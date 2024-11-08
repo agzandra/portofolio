@@ -6,7 +6,7 @@ interface ButtonProps {
   color: string;
 }
 
-export default function CButton(props : ButtonProps) {
+export default function Button(props: ButtonProps) {
   var style = 1;
   if (props.styleId !== null) {
     style = props.styleId;
@@ -27,16 +27,14 @@ export default function CButton(props : ButtonProps) {
       <button
         type="button"
         className={`px-4 py-2 font-semibold rounded-md shadow-md 
-          ${
-            props.color === "blue"
-              ? "bg-blue-600 text-white hover:bg-blue-700"
-              : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+          ${props.color === "blue"
+            ? "bg-blue-600 text-white hover:bg-blue-700"
+            : "bg-gray-100 text-gray-800 hover:bg-gray-200"
           }
           focus:outline-none focus:ring-2 focus:ring-offset-2 
-          ${
-            props.color === "blue"
-              ? "focus:ring-blue-500"
-              : "focus:ring-gray-300"
+          ${props.color === "blue"
+            ? "focus:ring-blue-500"
+            : "focus:ring-gray-300"
           }`}
       >
         {props.label}
