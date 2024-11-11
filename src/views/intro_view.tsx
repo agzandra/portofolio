@@ -5,23 +5,23 @@ class IntroView extends Component {
 
     componentDidMount(): void {
         this.animate();
-      }
-      animate(reverse: boolean = false) {
+    }
+    animate(reverse: boolean = false) {
         const introtext = document.getElementById(`introduceText`);
         const introimg = document.getElementById(`introduceImage`);
         const introimgopacity = document.getElementById(`introduceImageOpacity`);
         setTimeout(() => {
-          introimgopacity!.style.transition = 'opacity 3.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-          introimgopacity!.style.opacity = reverse ? '0%' : '100%';
+            introimgopacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+            introimgopacity!.style.opacity = reverse ? '0%' : '100%';
         }, reverse ? 200 : 1100)
         setTimeout(() => {
-          introtext!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-          introtext!.style.transform = reverse ? 'translateX(-100%)' : 'translateX(0%)';
-          introimg!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-          introimg!.style.transform = reverse ? 'translateX(100%)' : 'translateY(0%)';
+            introtext!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+            introtext!.style.transform = reverse ? 'translateX(-100%)' : 'translateX(0%)';
+            introimg!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+            introimg!.style.transform = reverse ? 'translateY(-100%)' : 'translateY(0%)';
         }, reverse ? 100 : 1200);
-      };
-    
+    };
+
     openPortfolio() {
 
         function transition(id: number) {
@@ -37,7 +37,11 @@ class IntroView extends Component {
                 element!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
                 element!.style.transform = 'translateY(100%)';
             }, 100 * (8 - id));
-
+            var fish = document.getElementById("lottieFish");
+            setTimeout(() => {
+                fish!.style.transition = 'opacity  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                fish!.style.opacity = '1';
+            }, 1000);
             if (id === 7) {
                 setTimeout(() => {
                     const star = document.getElementById(`shootingStar`);
@@ -45,7 +49,7 @@ class IntroView extends Component {
                     star!.style.transition = 'opacity  2.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
                     star!.style.opacity = '0';
                     landingLayout!.style.removeProperty('clip-path');
-                }, 3000);
+                }, 1000);
             }
         }
         transition(1);

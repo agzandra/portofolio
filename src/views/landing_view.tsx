@@ -9,7 +9,7 @@ class LandingView extends Component {
 
   render() {
     return (<div id="landingLayout"
-      style={{ position: "relative", clipPath: 'rectangle(0px 0px 0px 0px)' }}
+      style={{ position: "relative", clipPath: 'rectangle(0px 0px 0px 0px)', backgroundColor: "rgba(20, 20, 20, 1)" }}
     >
       <div id="portfolioPages" className="w-full absolute -z-10">
         <PortfolioView />
