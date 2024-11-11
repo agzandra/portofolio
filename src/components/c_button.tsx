@@ -1,13 +1,15 @@
 import React from "react";
 interface ButtonProps {
-  label: string;
+  inner: any;
   onClick?: () => void;
   styleId: number;
   className?: string;
-  color: string;
+  color?: string;
+  enablePadding?: boolean;
 }
 
 export default function Button(props: ButtonProps) {
+  var enable = props.enablePadding?? true;
   var style = 1;
   if (props.styleId !== null) {
     style = props.styleId;
@@ -17,12 +19,25 @@ export default function Button(props: ButtonProps) {
       <button
         type="button"
         onClick={props.onClick}
-        className={`${props.className} px-4 py-2 font-semibold text-white bg-${props.color}-600 
+        className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold text-white bg-${props.color}-600 
         rounded-2xl shadow-md hover:bg-${props.color}-700 focus:outline-none 
         focus:ring-2 focus:ring-offset-8 focus:ring-${props.color}-500 `}
 
       >
-        {props.label}
+        {props.inner}
+      </button>
+    );
+  } else if (style === 3) {
+    return (
+      <button
+        type="button"
+        onClick={props.onClick}
+        className={`${props.className}  font-semibold text-white bg-transparent
+        rounded-2xl shadow-md hover:bg-white-200 focus:outline-3 outline-2 outline-fuchsia-50  focus:ring-1 focus:ring-offset-8
+        `}
+
+      >
+        {props.inner}
       </button>
     );
   } else {
@@ -30,7 +45,7 @@ export default function Button(props: ButtonProps) {
       <button
         type="button"
         onClick={props.onClick}
-        className={`${props.className} px-4 py-2 font-semibold rounded-md shadow-md 
+        className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold rounded-md shadow-md 
           ${props.color === "blue"
             ? "bg-blue-600 text-white hover:bg-blue-700"
             : "bg-gray-100 text-gray-800 hover:bg-gray-200"
@@ -41,7 +56,7 @@ export default function Button(props: ButtonProps) {
             : "focus:ring-gray-300"
           }`}
       >
-        {props.label}
+        {props.inner}
       </button>
     );
   }
