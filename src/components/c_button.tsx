@@ -3,6 +3,7 @@ interface ButtonProps {
   label: string;
   onClick?: () => void;
   styleId: number;
+  className?: string;
   color: string;
 }
 
@@ -15,9 +16,11 @@ export default function Button(props: ButtonProps) {
     return (
       <button
         type="button"
-        className={`px-4 py-2 font-semibold text-white bg-${props.color}-600 
+        onClick={props.onClick}
+        className={`${props.className} px-4 py-2 font-semibold text-white bg-${props.color}-600 
         rounded-2xl shadow-md hover:bg-${props.color}-700 focus:outline-none 
-        focus:ring-2 focus:ring-offset-8 focus:ring-${props.color}-500`}
+        focus:ring-2 focus:ring-offset-8 focus:ring-${props.color}-500 `}
+
       >
         {props.label}
       </button>
@@ -26,7 +29,8 @@ export default function Button(props: ButtonProps) {
     return (
       <button
         type="button"
-        className={`px-4 py-2 font-semibold rounded-md shadow-md 
+        onClick={props.onClick}
+        className={`${props.className} px-4 py-2 font-semibold rounded-md shadow-md 
           ${props.color === "blue"
             ? "bg-blue-600 text-white hover:bg-blue-700"
             : "bg-gray-100 text-gray-800 hover:bg-gray-200"

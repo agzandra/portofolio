@@ -1,13 +1,24 @@
-import React from "react";
-import CButton from "../components/c_button";
-import CMountainParallax from "../components/c_mountain_parallax";
-
-export default function LandingView() {
-  return (
-    <div>
-      <CMountainParallax />
+import React, { Component } from "react";
+import PortfolioView from "./portfolio_view";
+import IntroView from "./intro_view";
 
 
+class LandingView extends Component {
+  
+
+
+  render() {
+    return (<div id="landingLayout"
+      style={{ position: "relative", clipPath: 'rectangle(0px 0px 0px 0px)' }}
+    >
+      <div id="portfolioPages" className="w-full absolute -z-10">
+        <PortfolioView />
+      </div>
+      <div id="introPages" className="w-full absolute">
+        <IntroView />
+      </div>
     </div>
-  );
+    )
+  }
 }
+export default LandingView
