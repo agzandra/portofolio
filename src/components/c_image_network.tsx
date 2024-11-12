@@ -1,5 +1,6 @@
 
 const ImageAsset = {
+    meAbidzar: "../src/assets/imgs/me_abidzar.png",
     showcasePlain: "../src/assets/imgs/showcase_plain.png",
     showcaseBlumb: (index: number) => `../src/assets/imgs/blumb${index}.png`,
     showcaseBlumb1: "../src/assets/imgs/blumb1.png",

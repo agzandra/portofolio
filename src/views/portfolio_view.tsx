@@ -69,7 +69,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
     }
 
     tagItem = (text: string[]) => {
-        return (<div className="flex flex-wrap gap-3 mt-2">
+        return (<div className="flex flex-wrap gap-3 mt-6 mr-4">
             {
                 text.map((item: string, index: number) => {
                     return (<div className="border border-gray-300 rounded-xl p-2 text-center">
@@ -92,7 +92,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
         if (id === 1) {
             replaceTitle = "blumb";
             replaceDesc = "blumb adalah aplikasi sosial yang berfokus kepada pengguna profesional, menyediakan lingkungan terbaik bagi para pengguna yang ingin mencari relasi kerja, organisasi dan komunitas profesional, event profesional dan lain sebagainya.";
-            replaceTag = this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Alpha Release","Actively Maintained", "Under Development", "Android", "iOS"])
+            replaceTag = this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Alpha Release", "Actively Maintained", "Under Development", "Android", "iOS"])
         } else if (id === 2) {
             replaceTitle = "KTKI e-STR Mobile"
             replaceDesc = "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi."

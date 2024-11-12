@@ -83,6 +83,7 @@ class CMountainParallax extends Component {
                     height: "100%",
                     width: "100%",
                     position: "absolute",
+                    scale: "1",
                     top: "0%",
                 }}
             >
@@ -91,7 +92,7 @@ class CMountainParallax extends Component {
     }
     render() {
         return (
-            <div style={{clipPath: 'rectangle(0px 0px 0px 0px)'}}>
+            <div id="parallaxParent" className="translate-y-0" style={{ clipPath: 'rectangle(0px 0px 0px 0px)' }}>
                 <div className="h-screen" style={{ backgroundColor: "rgba(20, 20, 20, 1)" }}></div>
                 <section id="shootingStar" style={{ opacity: 0 }}>
                     <span></span>

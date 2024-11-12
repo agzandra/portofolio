@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
-  var enable = props.enablePadding?? true;
+  var enable = props.enablePadding ?? true;
   var style = 1;
   if (props.styleId !== null) {
     style = props.styleId;
@@ -36,6 +36,35 @@ export default function Button(props: ButtonProps) {
         rounded-2xl shadow-md hover:bg-white-200 focus:outline-3 outline-2 outline-fuchsia-50  focus:ring-1 focus:ring-offset-8
         `}
 
+      >
+        {props.inner}
+      </button>
+    );
+  } else if (style === 4) {
+    return (
+      <button
+        type="button"
+        onClick={props.onClick}
+        className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold rounded-md shadow-md 
+          ${props.color === "blue"
+            ? "bg-blue-600 text-white hover:bg-blue-700"
+            : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+          }
+          ${props.color === "blue"
+            ? "focus:ring-blue-500"
+            : "focus:ring-gray-300"
+          }`}
+      >
+        {props.inner}
+      </button>
+    );
+  } else if (style === 5) {
+    return (
+      <button
+        type="button"
+        onClick={props.onClick}
+        className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold shadow-none
+         rounded-2xl hover:bg-white-200 outline-none`}
       >
         {props.inner}
       </button>
