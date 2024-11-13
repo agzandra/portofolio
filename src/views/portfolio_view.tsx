@@ -8,33 +8,37 @@ import ImageNetwork from "../components/c_image_network";
 interface PortfolioProps {
     introPortfolioTransition: (reverse?: boolean) => void
 }
-class PortfolioView extends Component<PortfolioProps, { imageSource: string, imageIndex: number, showcaseId: number, title: string, desc: string, tag?: React.JSX.Element }> {
+class PortfolioView extends Component<PortfolioProps, { imageSource: string, imageIndex: number, showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, intervalId: any }> {
     constructor(props: PortfolioProps) {
         super(props);
         this.state = {
             imageSource: "",
-            imageIndex: 0,
+            imageIndex: 1,
             showcaseId: 1,
             title: "",
             desc: "",
+            intervalId: null
         }
     }
 
-
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
+    }
 
 
     componentDidMount() {
         this.selectShowcase(1);
         this.setState({
-            imageSource: ImageNetwork.showcaseBlumb1,
+            imageSource: ImageNetwork.showcaseBlumb8,
         })
 
-        setInterval(() => {
+        var createintervalId = setInterval(() => {
             var imgLength = 4;
             var imgReplace = "";
             var currentIndex = this.state.imageIndex + 1;
 
             if (this.state.showcaseId === 1) {
+                imgLength = 8;
                 imgReplace = ImageNetwork.showcaseBlumb(currentIndex);
             } else if (this.state.showcaseId === 2) {
                 imgReplace = ImageNetwork.showcaseESTR(currentIndex);
@@ -60,12 +64,15 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
                     setTimeout(() => {
                         document.getElementById("imageShowcase")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
                         document.getElementById("imageShowcase")!.style.opacity = '100%';
-                    }, 100)
+                    }, 200)
                 }, 500)
             }, 500)
 
 
         }, 3000)
+        this.setState({
+            intervalId: createintervalId
+        })
     }
 
     tagItem = (text: string[]) => {
@@ -83,7 +90,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
 
 
         this.setState({
-            showcaseId: id,
+            showcaseId: id, imageIndex: 0
         })
         var replaceTitle = "";
         var replaceDesc = "";
@@ -100,8 +107,8 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
         }
         else if (id === 3) {
             replaceTitle = "Moloco"
-            replaceDesc = "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) Semarang."
-            replaceTag = this.tagItem(["Universitas Islam Sultan Agung", "Released", "Live Production", "Actively Maintained", "Android", "iOS"])
+            replaceDesc = "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) fakultas kedokteran."
+            replaceTag = this.tagItem(["Fakultas Kedokteran Universitas Islam Sultan Agung", "Released", "Live Production", "Actively Maintained", "Android", "iOS"])
         }
         else if (id === 4) {
             replaceTitle = "OBAT-in"

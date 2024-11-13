@@ -30,6 +30,9 @@ const ImageAsset = {
     iconObatin: "../src/assets/imgs/icon_obatin.png",
     iconMoloco: "../src/assets/imgs/icon_moloco.png",
     iconESTR: "../src/assets/imgs/icon_estr.png",
+    logoAbiseka: "../src/assets/imgs/logo_abiseka.jpg",
+    logoObatin: "../src/assets/imgs/logo_obatin.png",
+    logoFkUnissula: "../src/assets/imgs/logo_fk_unissula.png",
 
 }
 export default ImageAsset;

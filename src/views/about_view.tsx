@@ -24,10 +24,11 @@ export default class AboutView extends Component<AboutProps> {
             <div className="absolute overflow-y-scroll h-screen z-20" >
                 <header id="aboutHeader" className="flex justify-start items-center sm:pl-12 xs:pl-8 xs:pt-5 sm:pt-6 xs:pb-5 sm:pb-0 sm:bg-transparent xs:bg-zinc-900 text-white fixed w-full z-20 translate-y-0">
                     <nav className="flex gap-4">
-                        <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.aboutAnimation(true)}} styleId={1} />
+                        <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.aboutAnimation(true) }} styleId={1} />
                     </nav>
                 </header>
                 <div className="flex flex-col items-center justify-center w-full py-32">
+                    <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-white mt-5 mb-20" style={{ fontFamily: "Fira Sans" }}>TENTANG SAYA</h2>
                     <img
                         src={ImageNetwork.meAbidzar}
                         alt="Abidzar"

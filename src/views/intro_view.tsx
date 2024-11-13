@@ -32,14 +32,24 @@ class IntroView extends Component<IntroProps> {
     }
 
 
-
+    tagItem = (text: string[]) => {
+        return (<div className="flex flex-wrap justify-start content-center gap-1 mt-4 mb-10">
+            {
+                text.map((item: string, index: number) => {
+                    return (<div className="bg-white bg-opacity-15 rounded-xl py-1 px-2 text-center">
+                        <p className="text-xs text-white">{item}</p>
+                    </div>)
+                })
+            }
+        </div>)
+    }
     render() {
         return (
             <div>
                 <header id="introHeader" className="flex justify-end items-center sm:pr-12 xs:pr-8 xs:pt-5 sm:pt-6 xs:pb-5 sm:pb-0 sm:bg-transparent xs:bg-zinc-900 text-white fixed w-full z-20 -translate-y-full">
                     <nav className="flex gap-4">
-                        <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Pengalaman Kerja</div>} onClick={() => this.props.workExpAnimation()} styleId={5} />
-                        <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Tentang Saya</div>} onClick={() => this.props.aboutAnimation()} styleId={1} color="blue" />
+                        <CButton className="rounded-xl h-8 px-3" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Pengalaman Kerja</div>} onClick={() => this.props.workExpAnimation()} styleId={5} />
+                        <CButton className="rounded-xl h-8 px-3" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Tentang Saya</div>} onClick={() => this.props.aboutAnimation()} styleId={1} color="blue" />
                     </nav>
                 </header>
                 <div className="relative">
@@ -55,7 +65,7 @@ class IntroView extends Component<IntroProps> {
                     <div id="introContent" className="absolute overflow-y-scroll h-screen pt-5">
                         <div className="flex min-h-screen sm:flex-row xs:flex-col-reverse items-center justify-center py-9">
                             <div id="introduceText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full">
-                                <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent bg-clip-text animate-gradient"
+                                <h1 className="pb-1 xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent bg-clip-text animate-gradient"
                                     style={{
                                         fontFamily: "Fira Sans", backgroundImage:
                                             "radial-gradient(circle, #ebd834, #34d399 ,#3b82f6)",
@@ -65,8 +75,11 @@ class IntroView extends Component<IntroProps> {
                                     Seorang Flutter Developer
                                 </h1>
                                 <h4 className="sm:text-sm xl:text-lg sm:w-3/4 xs:w-full mt-5 text-white">
-                                    Dengan pengalaman selama lebih dari 3 tahun, proficient di pengembangan aplikasi mobile dan desktop dengan flutter, saya juga berpengalaman dalam menyediakan RESTful API Services menggunakan golang, pengembangan website menggunakan ReactJS, merancang prototipe dan menyediakan asset untuk keperluan UI/UX
+                                    Proficient di pengembangan aplikasi dengan flutter, dan berpengalaman dalam menyediakan RESTful API Services golang, build website dengan ReactJS dan visual design untuk UI/UX
                                 </h4>
+                                <div className="w-3/4">
+                                    {this.tagItem(["Flutter Dart", "Golang", "ReactJS", "Vue.js", "Typescript", "PosgreSQL", "Figma", "Motion Graphic Lottie", "After Effect", "CorelDraw", "Illustrator", "GitLab", "GitHub"])}
+                                </div>
                                 <div className="flex flex-wrap gap-3 mt-4">
                                     <CButton className="rounded-xl h-12" inner="Lihat Project" onClick={() => this.props.introPortfolioTransition()} styleId={4} color="blue" />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mingcute:whatsapp-line" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectWa() }} styleId={4} enablePadding={false} />
@@ -74,6 +87,7 @@ class IntroView extends Component<IntroProps> {
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="ant-design:linkedin-outlined" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectLinkedin() }} styleId={4} enablePadding={false} />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mage:email" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectMail() }} styleId={4} enablePadding={false} />
                                 </div>
+                                
                             </div>
                             <div id="introduceImage" className="sm:w-1/3 xs:w-1/2 xs:mt-10 sm:translate-y-full xs:-translate-y-full">
                                 <div id="introduceImageOpacity" className="opacity-0"><img src="../src/assets/imgs/me_abidzar.png"

@@ -4,15 +4,24 @@ import IntroView from "./intro_view";
 import AboutView from "./about_view";
 import WorkView from "./work_view";
 
+interface LandingProps {
+  introPortfolioTransition: (reverse?: boolean) => void
+}
 
-class LandingView extends Component {
+class LandingView extends Component<LandingProps, { showAbout: boolean, showWork: boolean, showPortfolio: boolean }> {
+
+
+  constructor(props: LandingProps) {
+    super(props);
+    this.state = {
+      showPortfolio: false,
+      showAbout: false,
+      showWork: false,
+    };
+  }
+
+
   componentDidMount(): void {
-    var portfolio = document.getElementById("portfolioPages");
-    portfolio!.hidden = true;
-    var portfolio = document.getElementById("aboutPages");
-    portfolio!.hidden = true;
-    var workExp = document.getElementById("workExpPages");
-    workExp!.hidden = true;
   }
 
   animateIntro = (reverse: boolean = false) => {
@@ -34,37 +43,43 @@ class LandingView extends Component {
     }, reverse ? 100 : 1200);
     if (!reverse) {
       setTimeout(() => {
-        var portfolio = document.getElementById("portfolioPages");
-        portfolio!.hidden = true;
+        this.setState({
+          showPortfolio: false
+        })
       }, 1200)
     }
   };
 
   animatePortfolio = (reverse: boolean = false) => {
-    const portfoliotext = document.getElementById(`portfolioText`);
-    const portfolioimg = document.getElementById(`portfolioImage`);
-    const portfolioimgopacity = document.getElementById(`portfolioImageOpacity`);
+    this.setState({
+      showPortfolio: true
+    })
     setTimeout(() => {
-      portfolioimgopacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-      portfolioimgopacity!.style.opacity = reverse ? '0%' : '100%';
-    }, reverse ? 200 : 1100)
-    setTimeout(() => {
-      portfoliotext!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-      portfoliotext!.style.transform = reverse ? 'translateX(-100%)' : 'translateX(0%)';
-      portfolioimg!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-      portfolioimg!.style.transform = reverse ? 'translateY(100%)' : 'translateY(0%)';
-    }, reverse ? 100 : 1200);
-    if (!reverse) {
-      var fish = document.getElementById("lottieFish");
+      const portfoliotext = document.getElementById(`portfolioText`);
+      const portfolioimg = document.getElementById(`portfolioImage`);
+      const portfolioimgopacity = document.getElementById(`portfolioImageOpacity`);
       setTimeout(() => {
-        fish!.style.transition = 'opacity  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-        fish!.style.opacity = reverse ? '0' : '1';
+        portfolioimgopacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        portfolioimgopacity!.style.opacity = reverse ? '0%' : '100%';
+      }, reverse ? 200 : 1100)
+      setTimeout(() => {
+        portfoliotext!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        portfoliotext!.style.transform = reverse ? 'translateX(-100%)' : 'translateX(0%)';
+        portfolioimg!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        portfolioimg!.style.transform = reverse ? 'translateY(100%)' : 'translateY(0%)';
+      }, reverse ? 100 : 1200);
+      if (!reverse) {
+        var fish = document.getElementById("lottieFish");
         setTimeout(() => {
-          var intro = document.getElementById("introPages");
-          intro!.hidden = true;
-        }, 1000)
-      }, 1000);
-    }
+          fish!.style.transition = 'opacity  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+          fish!.style.opacity = reverse ? '0' : '1';
+          setTimeout(() => {
+            var intro = document.getElementById("introPages");
+            intro!.hidden = true;
+          }, 1000)
+        }, 1000);
+      }
+    }, 300);
   };
 
   animateAbout = (reverse: boolean = false) => {
@@ -94,9 +109,11 @@ class LandingView extends Component {
       introheader!.style.transform = reverse ? 'translateY(0%)' : 'translateY(-150%)';
     }, reverse ? 1200 : 100);
     if (!reverse) {
+      this.setState({
+        showAbout: true
+      })
       setTimeout(() => {
         var about = document.getElementById("aboutPages");
-        about!.hidden = false;
         transition(1);
         transition(2);
         transition(3);
@@ -123,7 +140,9 @@ class LandingView extends Component {
         about!.style.transition = 'opacity 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         about!.style.opacity = '0%';
         setTimeout(() => {
-          about!.hidden = true;
+          this.setState({
+            showAbout: false
+          })
         }, 1000);
       }, 300)
     }
@@ -132,12 +151,30 @@ class LandingView extends Component {
   animateWorkExp = (reverse: boolean = false) => {
     function transition(id: number) {
       const element = document.getElementById(`parallax${id}`);
-      const elementMaster = document.getElementById("parallaxParent");
       setTimeout(() => {
-        element!.style.transition = 'scale  2.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-        element!.style.scale = reverse ? '1' : '2.5';
-        elementMaster!.style.transition = 'transform  4.0s cubic-bezier(0.4, 0, 0.2, 1)';
-        elementMaster!.style.transform = reverse ? 'translateY(0%)' : 'translateY(-20%)';
+        var translate = ""
+        var scale = ""
+        if (id === 5) {
+          scale = '1.5'
+          translate = `translate(20%, 0%)`
+        } else if (id === 6) {
+          scale = '1.5'
+          translate = `translate(15%, 0%)`
+        } else if (id === 7) {
+          scale = '1.5'
+          translate = `translate(10%, 0%)`
+        } else if (id === 4 || id === 3) {
+          scale = '2.9'
+          translate = `translate(10%, -5%)`
+
+        } else {
+          scale = '2.5'
+          translate = `translate(10%, -5%)`
+
+        }
+        element!.style.transition = 'scale  2.0s cubic-bezier(0.4, 0, 0.2, 1), transform 2.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        element!.style.scale = reverse ? '1' : scale;
+        element!.style.transform = reverse ? 'translate(0%, 20%)' : translate;
       }, 30 * (id * 2));
     }
 
@@ -157,10 +194,17 @@ class LandingView extends Component {
       introheader!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
       introheader!.style.transform = reverse ? 'translateY(0%)' : 'translateY(-150%)';
     }, reverse ? 1200 : 100);
+
+    // const elementMaster = document.getElementById("parallaxParent");
+    // elementMaster!.style.transition = 'transform  4.0s cubic-bezier(0.4, 0, 0.2, 1)';
+    // elementMaster!.style.transform = reverse ? 'translateY(0%)' : 'translateY(-20%)';
+
     if (!reverse) {
+      this.setState({
+        showWork: true
+      })
       setTimeout(() => {
         var workEExp = document.getElementById("workExpPages");
-        workEExp!.hidden = false;
         transition(1);
         transition(2);
         transition(3);
@@ -187,7 +231,9 @@ class LandingView extends Component {
         workExp!.style.transition = 'opacity 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         workExp!.style.opacity = '0%';
         setTimeout(() => {
-          workExp!.hidden = true;
+          this.setState({
+            showWork: false
+          })
         }, 1000);
       }, 300)
     }
@@ -244,8 +290,7 @@ class LandingView extends Component {
       }, 1000)
 
     } else {
-      var portfolio = document.getElementById("portfolioPages");
-      portfolio!.hidden = false;
+
       transition(1);
       transition(2);
       transition(3);
@@ -264,13 +309,13 @@ class LandingView extends Component {
       style={{ position: "relative", clipPath: 'rectangle(0px 0px 0px 0px)', backgroundColor: "rgba(20, 20, 20, 1)" }}
     >
       <div id="workExpPages" className="w-full absolute z-20 opacity-0">
-        <WorkView workExpAnimation={this.animateWorkExp} />
+        {this.state.showWork ? <WorkView workExpAnimation={this.animateWorkExp} /> : null}
       </div>
       <div id="aboutPages" className="w-full absolute z-10 opacity-0">
-        <AboutView aboutAnimation={this.animateAbout} />
+        {this.state.showAbout ? <AboutView aboutAnimation={this.animateAbout} /> : null}
       </div>
       <div id="portfolioPages" className="w-full absolute -z-10">
-        <PortfolioView introPortfolioTransition={this.introPortfolioTransition} />
+        {this.state.showPortfolio ? <PortfolioView introPortfolioTransition={this.introPortfolioTransition} /> : null}
       </div>
       <div id="introPages" className="w-full absolute">
         <IntroView workExpAnimation={this.animateWorkExp} aboutAnimation={this.animateAbout} introAnimation={this.animateIntro} introPortfolioTransition={this.introPortfolioTransition} />

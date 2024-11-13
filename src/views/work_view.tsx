@@ -19,6 +19,43 @@ export default class WorkView extends Component<WorkProps> {
             }
         </div>)
     }
+
+    workCard(title: string, statuskerja: string, masakerja: string, paragraf1: string, paragraf2: string, logo: string) {
+        return (
+            <div className="flex flex-col items-center justify-center mb-24">
+                <img
+                    src={logo}
+                    className="w-36 h-12 object-scale-down"
+                />
+
+                <h2 className="md:text-2xl xs:text-lg font-bold  md:w-2/4 xs: w-3/4 text-center text-white mt-5 mb-0">{title}</h2>
+
+
+
+                <div className="flex flex-row items-center md:w-2/4 xs: w-3/4 justify-start ">
+
+                    <div className="flex flex-col">
+                        <p className="md:text-xl xs:text-md text-white text-center">
+                            {statuskerja}
+                        </p>
+                        <p className="md:text-xl xs:text-md text-blue-100 text-center">
+                            {masakerja}
+                        </p>
+
+                        <p className="md:text-xl xs:text-md mt-3 text-left text-white " style={{ fontFamily: "Fira Sans" }}>
+                            {paragraf1}
+                            <br />
+                            <br />
+                            {paragraf2}
+                        </p>
+
+
+                    </div>
+                </div>
+
+            </div>
+        )
+    }
     render() {
         return (
             <div className="absolute overflow-y-scroll h-screen z-20" >
@@ -27,27 +64,26 @@ export default class WorkView extends Component<WorkProps> {
                         <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.workExpAnimation(true) }} styleId={1} />
                     </nav>
                 </header>
-                <div className="flex flex-col items-center justify-center w-full py-32">
-                    <img
-                        src={ImageNetwork.meAbidzar}
-                        alt="Abidzar"
-                        className="w-40 h-fit rounded-full"
-                    />
-                    <h2 className="text-3xl font-bold mt-4 text-white">Abidzar Ghifari Zandra</h2>
-                    <p className="text-xl mt-8 text-center text-white xl:px-80 md:px-52 sm: px-10" style={{ fontFamily: "Fira Sans" }}>
-                        Saya seorang front-end developer yang fokus kepada aplikasi mobile dengan framework Flutter, selain di bidang tersebut saya juga memiliki pengalaman dalam pengembangan aplikasi web app, memiliki pengalaman sebagai back-end developer yang menyediakan layanan API dan database, serta saya memiliki pengetahuan dalam desain visual dan motion graphics.
-                        <br />
-                        <br />
-                        Saya terbuka dalam mempelajari teknologi-teknologi baru yang menjadi tren di industri dan selalu bersemangat untuk mengimplementasikannya dalam proyek-proyek nyata, sehingga saya dapat terus memberikan solusi yang inovatif dan relevan ditengah tantangan baru dalam dunia teknologi.
-                        Saya terbiasa dengan pekerjaan kolaborasi dengan tim maupun solo fighter dalam berbagai proyek dan dapat dengan mudah beradaptasi dengan perubahan kebutuhan proyek.
-                        <br />
-                        <br />
-                        <h1 className="text-center text-xl" style={{ fontFamily: "Poppins", fontWeight: "bold" }}>Knowledge Tags</h1>
-                    </p>
-                    <div className="xl:px-80 md:px-52 sm: px-10">
-                        {this.tagItem(["Flutter Dart", "Golang", "ReactJS", "Vue.js", "Typescript", "PosgreSQL", "Figma", "Motion Graphic Lottie", "After Effect", "CorelDraw", "Illustrator", "GitLab", "GitHub"])}
-                    </div>
-
+                <div className=" pt-20 pb-20 ">
+                    <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-white mt-5 mb-20" style={{ fontFamily: "Fira Sans" }}>PENGALAMAN KERJA</h2>
+                    {this.workCard("PT. Andalan Basis Teknologi Informatika",
+                        "Software Engineer • Full Time • On Site",
+                        "Juni 2023 - Saat ini",
+                        "Bertanggung jawab dan aktif dalam pengembangan aplikasi mobile dan web dan mendesain UI/UX untuk aplikasi Blumb, KTKI eSTR Mobile, KTKI eSTR Web App.",
+                        "Membantu membuat dan menyediakan RESTful API Services dengan Golang untuk fungsi aplikasi serta mengelola struktur database pada project Blumb dan KTKI eSTR.",
+                        ImageNetwork.logoAbiseka)}
+                    {this.workCard("FK UNISSULA",
+                        "Mobile Developer • Part Time • Remote",
+                        "Juli 2023 - November 2023",
+                        "Pengembangan awal aplikasi Mobile Logbook Co-Ass (MOLOCO) hingga launching perdana di ICT Fakultas Kedokteran UNISSULA ",
+                        "Melatih mahasiswa dan dosen dalam penggunaan aplikasi MOLOCO",
+                        ImageNetwork.logoFkUnissula)}
+                    {this.workCard("PT. Obatin Sinergi Sehat",
+                        "Mobile Developer • Full Time • Remote",
+                        "Juni 2021 - Juni 2023",
+                        "Merancang UI/UX dan prototipe untuk aplikasi kesehatan OBAT-in dan OBAT-in Heroes",
+                        "Membangun aplikasi OBAT-in dan OBAT-in Heroes, menganalisa kebutuhan teknologi serta membuat aset desain grafis",
+                        ImageNetwork.logoObatin)}
                 </div>
             </div>
         );

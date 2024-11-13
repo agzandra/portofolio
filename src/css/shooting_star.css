@@ -26,18 +26,18 @@ section{
         transform:scale(1.2);
     }
 }
-span{
+.starfall{
     position: absolute;
     top: 50%;
     left: 50%;
     width: 4px;
     height: 4px;
-    background: #ffffff5a;
+    background: #ffffff21;
     border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.5)  ;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05), 0 0 0 8px rgba(255, 255, 255, 0.05), 0 0 20px rgba(255, 255, 255, 0.05)  ;
     animation:  animate 3s linear infinite;
 }
-span::before{
+.starfall::before{
     content: '';
     position: absolute;
     top: 50%;
@@ -65,7 +65,7 @@ span::before{
     }
     
 }
-span:nth-child(1){
+.starfall:nth-child(1){
     top: 0;
     right: 0;
     left:initial;
@@ -73,7 +73,7 @@ span:nth-child(1){
     animation-duration: 1s;
 }
 
-span:nth-child(2){
+.starfall:nth-child(2){
     top: 0;
     right: 80px;
     left:initial;
@@ -81,7 +81,7 @@ span:nth-child(2){
     animation-duration: 3s;
 }
 
-span:nth-child(3){
+.starfall:nth-child(3){
     top: 80px;
     right: 0px;
     left:initial;
@@ -89,7 +89,7 @@ span:nth-child(3){
     animation-duration: 2s;
 }
 
-span:nth-child(4){
+.starfall:nth-child(4){
     top: 0;
     right: 180px;
     left:initial;
@@ -97,7 +97,7 @@ span:nth-child(4){
     animation-duration: 1.5s;
 }
 
-span:nth-child(5){
+.starfall:nth-child(5){
     top: 0;
     right: 400px;
     left:initial;
@@ -105,14 +105,14 @@ span:nth-child(5){
     animation-duration: 2.5s;
 }
 
-span:nth-child(6){
+.starfall:nth-child(6){
     top: 0;
     right: 600px;
     left:initial;
     animation-delay:1s ;
     animation-duration: 3s;
 }
-span:nth-child(7 ){
+.starfall:nth-child(7 ){
     top: 300px;
     right: 0px;
     left:initial;
@@ -120,7 +120,7 @@ span:nth-child(7 ){
     animation-duration: 1.75s;
 }
 
-span:nth-child(8){
+.starfall:nth-child(8){
     top: 0px;
     right: 700px;
     left:initial;
@@ -128,7 +128,7 @@ span:nth-child(8){
     animation-duration: 1.25s;
 }
 
-span:nth-child(9){
+.starfall:nth-child(9){
     top: 0px;
     right: 1000px;
     left:initial;
@@ -136,7 +136,7 @@ span:nth-child(9){
     animation-duration: 2.25s;
 }
 
-span:nth-child(10){
+.starfall:nth-child(10){
     top: 0px;
     right: 1000px;
     left:initial;

@@ -79,7 +79,7 @@ class CMountainParallax extends Component {
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                     backgroundAttachment: "fixed",
-                    transform: "translateY(100%)",
+                    transform: "translate(0%, 100%)",
                     height: "100%",
                     width: "100%",
                     position: "absolute",
@@ -95,16 +95,16 @@ class CMountainParallax extends Component {
             <div id="parallaxParent" className="translate-y-0" style={{ clipPath: 'rectangle(0px 0px 0px 0px)' }}>
                 <div className="h-screen" style={{ backgroundColor: "rgba(20, 20, 20, 1)" }}></div>
                 <section id="shootingStar" style={{ opacity: 0 }}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
+                    <span className="starfall"></span>
                 </section>
                 <this.BgParallax layer={7} />
                 <this.BgParallax layer={6} />
