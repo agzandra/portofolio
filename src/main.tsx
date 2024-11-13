@@ -7,7 +7,7 @@ import LandingView from "./views/landing_view";
 createRoot(document.getElementById("root") as HTMLElement).render(
 
 
-  <BrowserRouter>
+  <BrowserRouter basename="/portfolio/">
     <Routes>
       <Route path="/" element={<LandingView title=""/>} />
     </Routes>

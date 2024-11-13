@@ -18,18 +18,18 @@ class IntroView extends Component<IntroProps> {
 
 
     redirectWa(): void {
-        window.open("https://wa.me/6282285469899", "_blank");
+        window.open("https://wa.me/6282285469899");
     }
     redirectIG(): void {
-        window.open("https://www.instagram.com/abidzar.gzandra/", "_blank");
+        window.open("https://www.instagram.com/abidzar.gzandra/");
     }
 
     redirectLinkedin(): void {
-        window.open("https://www.linkedin.com/in/abidzargzandra/", "_blank");
+        window.open("https://www.linkedin.com/in/abidzargzandra/");
     }
 
     redirectMail(): void {
-        window.open("mailto:abidzar.gzandra@gmail.com", "_blank");
+        window.open("mailto:abidzar.gzandra@gmail.com");
     }
 
 
@@ -88,7 +88,7 @@ class IntroView extends Component<IntroProps> {
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="ant-design:linkedin-outlined" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectLinkedin() }} styleId={4} enablePadding={false} />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mage:email" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectMail() }} styleId={4} enablePadding={false} />
                                 </div>
-                                
+
                             </div>
                             <div id="introduceImage" className="sm:w-1/3 xs:w-1/2 xs:mt-10 sm:translate-y-full xs:-translate-y-full">
                                 <div id="introduceImageOpacity" className="opacity-0"><img src={ImageNetwork.meAbidzar}

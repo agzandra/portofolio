@@ -137,6 +137,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
         <div id="lottieFish" className="w-full h-screen bg-cover bg-center bg-no-repeat opacity-0 ">
             <Lottie
                 animationData={FishSwimming}
+                
                 style={{ height: "100vh", width: "100vw", clipPath: 'rectangle(0px 0px 0px 0px)' }}
                 rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
             />
@@ -184,7 +185,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
                                 <img id="imageShowcase" src={this.state.imageSource}
                                     className="ww-full absolute top-0 left-0 opacity-100"
                                 />
-                                <img src="../src/assets/svgs/iphone_frame.svg"
+                                <img src="/portfolio/iphone_frame.svg"
                                     className="w-full absolute top-0 left-0"
                                 />
                             </div>

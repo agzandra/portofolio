@@ -1,13 +1,5 @@
 
-import React, { Component, useRef } from "react";
-import { useSpring, animated } from 'react-spring';
-import BgParallax1 from "../assets/svgs/mountain_parallax_1.svg";
-import BgParallax2 from "../assets/svgs/mountain_parallax_2.svg";
-import BgParallax3 from "../assets/svgs/mountain_parallax_3.svg";
-import BgParallax4 from "../assets/svgs/mountain_parallax_4.svg";
-import BgParallax5 from "../assets/svgs/mountain_parallax_5.svg";
-import BgParallax6 from "../assets/svgs/mountain_parallax_6.svg";
-import BgParallax7 from "../assets/svgs/mountain_parallax_7.svg";
+import React, { Component } from "react";
 import "../css/shooting_star.css";
 class CMountainParallax extends Component {
 
@@ -49,32 +41,13 @@ class CMountainParallax extends Component {
     };
 
     BgParallax(props: any) {
-        function bgSelect() {
-            switch (props.layer) {
-                case 1:
-                    return BgParallax1;
-                case 2:
-                    return BgParallax2;
-                case 3:
-                    return BgParallax3;
-                case 4:
-                    return BgParallax4;
-                case 5:
-                    return BgParallax5;
-                case 6:
-                    return BgParallax6;
-                case 7:
-                    return BgParallax7;
-                default:
-                    return BgParallax1;
-            }
-        }
+
         return (
             <div
                 className="min-h-screen"
                 id={`parallax${props.layer}`}
                 style={{
-                    backgroundImage: `url(${bgSelect()})`,
+                    backgroundImage: `url('/portfolio/mountain_parallax_${props.layer}.svg')`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
