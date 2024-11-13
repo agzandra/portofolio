@@ -4,79 +4,58 @@ import FishSwimming from "../assets/lottie/fish_swimming.json";
 import CButton from "../components/c_button";
 import { Icon } from '@iconify/react';
 import ImageNetwork from "../components/c_image_network";
+import { Fade } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
 interface PortfolioProps {
     introPortfolioTransition: (reverse?: boolean) => void
 }
-class PortfolioView extends Component<PortfolioProps, { imageSource: string, imageIndex: number, showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, intervalId: any }> {
+
+class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[] }> {
     constructor(props: PortfolioProps) {
         super(props);
         this.state = {
-            imageSource: "",
-            imageIndex: 1,
             showcaseId: 1,
             title: "",
             desc: "",
-            intervalId: null
+            imageShowcases: []
         }
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.state.intervalId);
     }
 
 
     componentDidMount() {
         this.selectShowcase(1);
-        this.setState({
-            imageSource: ImageNetwork.showcaseBlumb8,
-        })
-
-        var createintervalId = setInterval(() => {
-            var imgLength = 4;
-            var imgReplace = "";
-            var currentIndex = this.state.imageIndex + 1;
-
-            if (this.state.showcaseId === 1) {
-                imgLength = 8;
-                imgReplace = ImageNetwork.showcaseBlumb(currentIndex);
-            } else if (this.state.showcaseId === 2) {
-                imgReplace = ImageNetwork.showcaseESTR(currentIndex);
-
-            } else if (this.state.showcaseId === 3) {
-                imgReplace = ImageNetwork.showcaseMoloco(currentIndex);
-
-            } else if (this.state.showcaseId === 4) {
-                imgReplace = ImageNetwork.showcaseObatin(currentIndex);
-
-            }
-            if (currentIndex === imgLength) {
-                currentIndex = 0
-            }
-            setTimeout(() => {
-                document.getElementById("imageShowcase")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-                document.getElementById("imageShowcase")!.style.opacity = '0%';
-                setTimeout(() => {
-                    this.setState({
-                        imageIndex: currentIndex,
-                        imageSource: imgReplace,
-                    })
-                    setTimeout(() => {
-                        document.getElementById("imageShowcase")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-                        document.getElementById("imageShowcase")!.style.opacity = '100%';
-                    }, 200)
-                }, 500)
-            }, 500)
 
 
-        }, 3000)
-        this.setState({
-            intervalId: createintervalId
-        })
+    }
+
+    availableStore = (gplay?: string, appstore?: string) => {
+        const gplayBtn = () => gplay ? (<a href={gplay} target="_blank">
+            <img src={ImageNetwork.getOnGooglePlay} className="w-36 h-fit rounded-lg" />
+        </a>) : <div></div>
+        const appstoreBtn = () => appstore ? (<a href={appstore} target="_blank">
+            <img src={ImageNetwork.getOnAppStore} className="w-36 h-fit rounded-lg" />
+        </a>) : <div></div>
+        if (gplay != undefined && appstore != undefined) {
+            return (
+                <div className="flex gap-3 mt-8">
+                    {gplayBtn()}
+                    {appstoreBtn()}
+                </div>
+            )
+        } else if (gplay != undefined) {
+            return (
+                <div className="mt-8">{gplayBtn()}</div>
+            )
+        } else {
+            return (
+                <div className="mt-8">{appstoreBtn()}</div>
+            )
+        }
     }
 
     tagItem = (text: string[]) => {
-        return (<div className="flex flex-wrap gap-3 mt-6 mr-4">
+        return (<div className="flex flex-wrap gap-3 mt-6 mr-4 ">
             {
                 text.map((item: string, index: number) => {
                     return (<div className="border border-gray-300 rounded-xl p-2 text-center">
@@ -89,9 +68,7 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
     selectShowcase(id: number) {
 
 
-        this.setState({
-            showcaseId: id, imageIndex: 0
-        })
+
         var replaceTitle = "";
         var replaceDesc = "";
         var replaceTag = this.tagItem([""]);
@@ -99,45 +76,87 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
         if (id === 1) {
             replaceTitle = "blumb";
             replaceDesc = "blumb adalah aplikasi sosial yang berfokus kepada pengguna profesional, menyediakan lingkungan terbaik bagi para pengguna yang ingin mencari relasi kerja, organisasi dan komunitas profesional, event profesional dan lain sebagainya.";
-            replaceTag = this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Alpha Release", "Actively Maintained", "Under Development", "Android", "iOS"])
+            replaceTag = (<div>
+                {this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Pre-Release", "Actively Maintained", "Under Development", "Android", "iOS"])}
+                {this.availableStore("https://play.google.com/store/apps/details?id=com.abiseka.blumb", "https://apps.apple.com/id/app/blumb/id6449251568")}
+            </div>);
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseBlumb1,
+                    ImageNetwork.showcaseBlumb2,
+                    ImageNetwork.showcaseBlumb3,
+                    ImageNetwork.showcaseBlumb4,
+                    ImageNetwork.showcaseBlumb5,
+                    ImageNetwork.showcaseBlumb6,
+                    ImageNetwork.showcaseBlumb7,
+                    ImageNetwork.showcaseBlumb8
+                ]
+            })
         } else if (id === 2) {
             replaceTitle = "KTKI e-STR Mobile"
             replaceDesc = "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi."
             replaceTag = this.tagItem(["Konsil Tenaga Kesehatan Indonesia", "Kementerian Kesehatan", "Unreleased", "Under Development", "Android", "iOS"])
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseESTR1,
+                    ImageNetwork.showcaseESTR2,
+                    ImageNetwork.showcaseESTR3,
+                    ImageNetwork.showcaseESTR4
+                ]
+            })
         }
         else if (id === 3) {
             replaceTitle = "Moloco"
             replaceDesc = "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) fakultas kedokteran."
-            replaceTag = this.tagItem(["Fakultas Kedokteran Universitas Islam Sultan Agung", "Released", "Live Production", "Actively Maintained", "Android", "iOS"])
+            replaceTag = (<div>
+                {this.tagItem(["Fakultas Kedokteran Universitas Islam Sultan Agung", "Released", "Live Production", "Actively Maintained", "Android", "iOS"])}
+                {this.availableStore("https://play.google.com/store/apps/details?id=com.fkunissula.molocopspdfkunissula", "https://apps.apple.com/id/app/moloco/id1625049471")}
+            </div>);
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseMoloco1,
+                    ImageNetwork.showcaseMoloco2,
+                    ImageNetwork.showcaseMoloco3,
+                    ImageNetwork.showcaseMoloco4
+                ]
+            })
         }
         else if (id === 4) {
             replaceTitle = "OBAT-in"
             replaceDesc = "Pengembangan aplikasi bidang kesehatan yang menyediakan layanan dokter dan tenaga medis lainnya berupa layanan telemedis, visit dan reservasi praktik, juga menyediakan penjualan produk kesehatan, layanan pembuatan resep obat apotek dan layanan fasilitas kesehatan. Saat ini pengembangan terhenti dalam jangka waktu yang belum ditentukan."
             replaceTag = this.tagItem(["PT. Obatin Sinergi Sehat", "Discontinued", "Abadoned Project", "Android", "iOS"])
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseObatin1,
+                    ImageNetwork.showcaseObatin2,
+                    ImageNetwork.showcaseObatin3,
+                    ImageNetwork.showcaseObatin4
+                ]
+            })
         }
 
+
+
+        document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        document.getElementById("portfolioDesc")!.style.opacity = '0%';
         setTimeout(() => {
-            document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-            document.getElementById("portfolioDesc")!.style.opacity = '0%';
+            this.setState({
+                title: replaceTitle,
+                desc: replaceDesc,
+                tag: replaceTag,
+            })
             setTimeout(() => {
-                this.setState({
-                    title: replaceTitle,
-                    desc: replaceDesc,
-                    tag: replaceTag,
-                })
-                setTimeout(() => {
-                    document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-                    document.getElementById("portfolioDesc")!.style.opacity = '100%';
-                }, 100)
-            }, 500)
-        }, 200)
+                document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                document.getElementById("portfolioDesc")!.style.opacity = '100%';
+            }, 100)
+        }, 500)
     }
 
     Fish = () =>
         <div id="lottieFish" className="w-full h-screen bg-cover bg-center bg-no-repeat opacity-0 ">
             <Lottie
                 animationData={FishSwimming}
-                
+
                 style={{ height: "100vh", width: "100vw", clipPath: 'rectangle(0px 0px 0px 0px)' }}
                 rendererSettings={{ preserveAspectRatio: 'xMidYMid slice' }}
             />
@@ -182,11 +201,17 @@ class PortfolioView extends Component<PortfolioProps, { imageSource: string, ima
                                 <img src={ImageNetwork.showcasePlain}
                                     className="w-full opacity-100"
                                 />
-                                <img id="imageShowcase" src={this.state.imageSource}
-                                    className="ww-full absolute top-0 left-0 opacity-100"
-                                />
+                                <div className="slide-container w-full absolute top-0 left-0 opacity-100">
+                                    <Fade key={this.state.imageShowcases.join(',')} autoplay={true} arrows={false} duration={1500} infinite={true}>
+                                        {this.state.imageShowcases.map((url, index) => (
+                                            <div key={index}>
+                                                <img style={{ width: '100%' }} src={url} />
+                                            </div>
+                                        ))}
+                                    </Fade>
+                                </div>
                                 <img src="/portfolio/iphone_frame.svg"
-                                    className="w-full absolute top-0 left-0"
+                                    className="w-full absolute top-0 z-20 left-0"
                                 />
                             </div>
                         </div>

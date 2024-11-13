@@ -27,11 +27,13 @@ import iconESTR from "../assets/imgs/icon_estr.png";
 import logoAbiseka from "../assets/imgs/logo_abiseka.jpg";
 import logoObatin from "../assets/imgs/logo_obatin.png";
 import logoFkUnissula from "../assets/imgs/logo_fk_unissula.png";
+import getOnAppStore from "../assets/imgs/get_on_app_store.png";
+import getOnGooglePlay from "../assets/imgs/get_on_google_play.png";
 
 const ImageAsset = {
     meAbidzar,
     showcasePlain,
-    showcaseBlumb: (index: number)=> {
+    showcaseBlumb: (index: number) => {
         switch (index) {
             case 1:
                 return showcaseBlumb1;
@@ -59,7 +61,7 @@ const ImageAsset = {
     showcaseBlumb6,
     showcaseBlumb7,
     showcaseBlumb8,
-    showcaseESTR: (index: number)=>{
+    showcaseESTR: (index: number) => {
         switch (index) {
             case 1:
                 return showcaseESTR1;
@@ -67,7 +69,7 @@ const ImageAsset = {
                 return showcaseESTR2;
             case 3:
                 return showcaseESTR3;
-                default:
+            default:
                 return showcaseESTR4;
         }
     },
@@ -75,7 +77,7 @@ const ImageAsset = {
     showcaseESTR2,
     showcaseESTR3,
     showcaseESTR4,
-    showcaseObatin: (index: number)=> {
+    showcaseObatin: (index: number) => {
         switch (index) {
             case 1:
                 return showcaseObatin1;
@@ -91,7 +93,7 @@ const ImageAsset = {
     showcaseObatin2,
     showcaseObatin3,
     showcaseObatin4,
-    showcaseMoloco: (index: number) =>{
+    showcaseMoloco: (index: number) => {
         switch (index) {
             case 1:
                 return showcaseMoloco1;
@@ -114,6 +116,8 @@ const ImageAsset = {
     logoAbiseka,
     logoObatin,
     logoFkUnissula,
+    getOnAppStore,
+    getOnGooglePlay
 }
 
 export default ImageAsset;
