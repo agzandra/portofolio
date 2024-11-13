@@ -155,27 +155,27 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
         var translate = ""
         var scale = ""
         if (id === 5) {
-          scale = '1.5'
+          scale = '1.6'
           translate = `translate(20%, 0%)`
         } else if (id === 6) {
-          scale = '1.5'
+          scale = '1.7'
           translate = `translate(15%, 0%)`
         } else if (id === 7) {
-          scale = '1.5'
+          scale = '1.6'
           translate = `translate(10%, 0%)`
         } else if (id === 4 || id === 3) {
-          scale = '2.9'
+          scale = '2.4'
           translate = `translate(10%, -5%)`
 
         } else {
-          scale = '2.5'
+          scale = '2.6'
           translate = `translate(10%, -5%)`
 
         }
         element!.style.transition = 'scale  2.0s cubic-bezier(0.4, 0, 0.2, 1), transform 2.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         element!.style.scale = reverse ? '1' : scale;
         element!.style.transform = reverse ? 'translate(0%, 20%)' : translate;
-      }, 30 * (id * 2));
+      }, 100);
     }
 
     const introtext = document.getElementById(`introduceText`);

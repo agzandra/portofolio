@@ -29,6 +29,10 @@ import logoObatin from "../assets/imgs/logo_obatin.png";
 import logoFkUnissula from "../assets/imgs/logo_fk_unissula.png";
 import getOnAppStore from "../assets/imgs/get_on_app_store.png";
 import getOnGooglePlay from "../assets/imgs/get_on_google_play.png";
+import work1 from "../assets/imgs/work-1.png";
+import work2 from "../assets/imgs/work-2.png";
+import work3 from "../assets/imgs/work-3.png";
+import work4 from "../assets/imgs/work-4.png";
 
 const ImageAsset = {
     meAbidzar,
@@ -117,7 +121,8 @@ const ImageAsset = {
     logoObatin,
     logoFkUnissula,
     getOnAppStore,
-    getOnGooglePlay
+    getOnGooglePlay,
+    work1, work2, work3, work4
 }
 
 export default ImageAsset;

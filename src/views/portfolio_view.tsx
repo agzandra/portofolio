@@ -31,10 +31,10 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
     availableStore = (gplay?: string, appstore?: string) => {
         const gplayBtn = () => gplay ? (<a href={gplay} target="_blank">
-            <img src={ImageNetwork.getOnGooglePlay} className="w-36 h-fit rounded-lg" />
+            <img src={ImageNetwork.getOnGooglePlay} className="w-36 object-contain rounded-lg" />
         </a>) : <div></div>
         const appstoreBtn = () => appstore ? (<a href={appstore} target="_blank">
-            <img src={ImageNetwork.getOnAppStore} className="w-36 h-fit rounded-lg" />
+            <img src={ImageNetwork.getOnAppStore} className="w-36 object-contain rounded-lg" />
         </a>) : <div></div>
         if (gplay != undefined && appstore != undefined) {
             return (
@@ -175,7 +175,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
                         <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14">
                             <div className="flex flex-row mt-8">
-                                <CButton className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:home" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
+                                <CButton className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
                                 <CButton className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
                                 <CButton className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
                                 <CButton className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />

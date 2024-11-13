@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import CButton from "../components/c_button";
 import { Icon } from "@iconify/react";
 import ImageNetwork from "../components/c_image_network";
+import { Fade } from 'react-slideshow-image';
 
 interface WorkProps {
     workExpAnimation: (reverse?: boolean) => void
 }
 export default class WorkView extends Component<WorkProps> {
+
+    image = [
+        ImageNetwork.work1,
+        ImageNetwork.work2,
+        ImageNetwork.work3,
+        ImageNetwork.work4,
+    ]
 
     tagItem = (text: string[]) => {
         return (<div className="flex flex-wrap justify-center content-center gap-3 mt-6 mr-4">
@@ -35,14 +43,14 @@ export default class WorkView extends Component<WorkProps> {
                 <div className="flex flex-row items-center md:w-2/4 xs: w-3/4 justify-start ">
 
                     <div className="flex flex-col">
-                        <p className="md:text-xl xs:text-md text-white text-center">
+                        <p className="md:text-xl xs:text-sm text-white text-center">
                             {statuskerja}
                         </p>
-                        <p className="md:text-xl xs:text-md text-blue-100 text-center">
+                        <p className="md:text-xl xs:text-sm text-blue-100 text-center">
                             {masakerja}
                         </p>
 
-                        <p className="md:text-xl xs:text-md mt-3 text-left text-white " style={{ fontFamily: "Fira Sans" }}>
+                        <p className="md:text-xl xs:text-sm mt-3 text-left text-white " style={{ fontFamily: "Fira Sans" }}>
                             {paragraf1}
                             <br />
                             <br />
@@ -61,11 +69,23 @@ export default class WorkView extends Component<WorkProps> {
             <div className="absolute overflow-y-scroll h-screen z-20" >
                 <header id="workHeader" className="flex justify-start items-center sm:pl-12 xs:pl-8 xs:pt-5 sm:pt-6 xs:pb-5 sm:pb-0 sm:bg-transparent xs:bg-zinc-900 text-white fixed w-full z-20 translate-y-0">
                     <nav className="flex gap-4">
-                        <CButton className="rounded-xl h-12" inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.workExpAnimation(true) }} styleId={1} />
+                        <CButton className="rounded-xl xs:h-8 sm:h-12 px-2" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.workExpAnimation(true) }} styleId={1} />
                     </nav>
                 </header>
                 <div className=" pt-20 pb-20 ">
-                    <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-white mt-5 mb-20" style={{ fontFamily: "Fira Sans" }}>PENGALAMAN KERJA</h2>
+
+                    <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-white mt-5 mb-10" style={{ fontFamily: "Fira Sans" }}>PENGALAMAN KERJA</h2>
+                    <div className="flex flex-wrap justify-center mb-20">
+                        <div className="slide-container w-96 h-56 top-0 left-0 opacity-100">
+                            <Fade key={this.image.join(',')} autoplay={true} arrows={false} duration={1500} infinite={true}>
+                                {this.image.map((url, index) => (
+                                    <div key={`work-${index}`}>
+                                        <img style={{ width: '100%' }} src={url} />
+                                    </div>
+                                ))}
+                            </Fade>
+                        </div>
+                    </div>
                     {this.workCard("PT. Andalan Basis Teknologi Informatika",
                         "Software Engineer • Full Time • On Site",
                         "Juni 2023 - Saat ini",
@@ -84,6 +104,7 @@ export default class WorkView extends Component<WorkProps> {
                         "Merancang UI/UX dan prototipe untuk aplikasi kesehatan OBAT-in dan OBAT-in Heroes",
                         "Membangun aplikasi OBAT-in dan OBAT-in Heroes, menganalisa kebutuhan teknologi serta membuat aset desain grafis",
                         ImageNetwork.logoObatin)}
+
                 </div>
             </div>
         );
