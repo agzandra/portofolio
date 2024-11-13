@@ -9,7 +9,7 @@ createRoot(document.getElementById("root") as HTMLElement).render(
 
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<LandingView />} />
+      <Route path="/" element={<LandingView title=""/>} />
     </Routes>
   </BrowserRouter>
 );

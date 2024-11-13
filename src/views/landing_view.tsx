@@ -5,7 +5,7 @@ import AboutView from "./about_view";
 import WorkView from "./work_view";
 
 interface LandingProps {
-  introPortfolioTransition: (reverse?: boolean) => void
+  title: string
 }
 
 class LandingView extends Component<LandingProps, { showAbout: boolean, showWork: boolean, showPortfolio: boolean }> {

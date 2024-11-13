@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CButton from "../components/c_button";
 import CMountainParallax from "../components/c_mountain_parallax";
 import { Icon } from "@iconify/react";
+import ImageNetwork from "../components/c_image_network";
 
 interface IntroProps {
     workExpAnimation: (reverse?: boolean) => void
@@ -90,7 +91,7 @@ class IntroView extends Component<IntroProps> {
                                 
                             </div>
                             <div id="introduceImage" className="sm:w-1/3 xs:w-1/2 xs:mt-10 sm:translate-y-full xs:-translate-y-full">
-                                <div id="introduceImageOpacity" className="opacity-0"><img src="../src/assets/imgs/me_abidzar.png"
+                                <div id="introduceImageOpacity" className="opacity-0"><img src={ImageNetwork.meAbidzar}
                                     className="md:w-5/6 xs:w-full h-fit md:pr-16 sm:pr-8 xs:pb-10"
                                 /></div>
                             </div>
