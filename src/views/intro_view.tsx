@@ -3,18 +3,23 @@ import CButton from "../components/c_button";
 import CMountainParallax from "../components/c_mountain_parallax";
 import { Icon } from "@iconify/react";
 import ImageNetwork from "../components/c_image_network";
+import { useAppSelector, useAppDispatch } from '../app/provider_hooks'
+import { toSectionAbout, toSectionPortfolio, toSectionWork } from '../app/reducers/landing_reducer'
+import { useSpring } from "react-spring";
+import { LandingSection } from "../app/enum";
 
-interface IntroProps {
-    workExpAnimation: (reverse?: boolean) => void
-    introAnimation: (reverse?: boolean) => void
-    aboutAnimation: (reverse?: boolean) => void
-    introPortfolioTransition: (reverse?: boolean) => void
-}
-class IntroView extends Component<IntroProps> {
 
-    componentDidMount(): void {
-        this.props.introAnimation();
-    }
+class IntroView extends Component {
+    section = useAppSelector((state) => state.landing.section)
+    dispatch = useAppDispatch()
+
+    introTextAnim = useSpring({
+        opacity: this.section === LandingSection.Intro ? 1 : 0,
+        y: this.section === LandingSection.Intro ? 0 : '-100%',
+        delay: 200,
+        config: { duration: 1000 },
+    });
+
 
 
     redirectWa(): void {
@@ -33,6 +38,9 @@ class IntroView extends Component<IntroProps> {
     }
 
 
+
+
+
     tagItem = (text: string[]) => {
         return (<div className="flex flex-wrap xs:justify-center sm:justify-start content-center gap-1 mt-4 mb-10">
             {
@@ -49,8 +57,8 @@ class IntroView extends Component<IntroProps> {
             <div className="xs:pb-48 sm:pb-2">
                 <header id="introHeader" className="flex justify-end items-center sm:pr-12 xs:pr-8 xs:pt-5 sm:pt-6 xs:pb-2 sm:pb-5 sm:bg-transparent xs:bg-zinc-900 text-white fixed w-full z-20 -translate-y-full">
                     <nav className="flex xs:gap-2 sm:gap-4">
-                        <CButton className="xs:rounded-lg sm:rounded-xl xs:h-6 sm:h-8 xs:px-2 sm:px-3 xs:text-xs sm:text-sm" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Pengalaman Kerja</div>} onClick={() => this.props.workExpAnimation()} styleId={5} />
-                        <CButton className="xs:rounded-lg sm:rounded-xl  xs:h-6 sm:h-8 xs:px-2 sm:px-3 xs:text-xs sm:text-sm" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Tentang Saya</div>} onClick={() => this.props.aboutAnimation()} styleId={1} color="blue" />
+                        <CButton className="xs:rounded-lg sm:rounded-xl xs:h-6 sm:h-8 xs:px-2 sm:px-3 xs:text-xs sm:text-sm" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Pengalaman Kerja</div>} onClick={() => this.dispatch(toSectionWork())} styleId={5} />
+                        <CButton className="xs:rounded-lg sm:rounded-xl  xs:h-6 sm:h-8 xs:px-2 sm:px-3 xs:text-xs sm:text-sm" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Tentang Saya</div>} onClick={() => this.dispatch(toSectionAbout())} styleId={1} color="blue" />
                     </nav>
                 </header>
                 <div className="relative">
@@ -82,14 +90,14 @@ class IntroView extends Component<IntroProps> {
                                     {this.tagItem(["Flutter Dart", "Golang", "ReactJS", "Vue.js", "Typescript", "PosgreSQL", "Figma", "Motion Graphic Lottie", "After Effect", "CorelDraw", "Illustrator", "GitLab", "GitHub"])}
                                 </div>
                                 <div className="flex flex-wrap xs:justify-center sm:justify-normal gap-3 mt-4">
-                                    <CButton className="rounded-xl h-12 xs:hidden sm:block" inner="Lihat Project" onClick={() => this.props.introPortfolioTransition()} styleId={4} color="blue" />
+                                    <CButton className="rounded-xl h-12 xs:hidden sm:block" inner="Lihat Project" onClick={() => this.dispatch(toSectionPortfolio())} styleId={4} color="blue" />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mingcute:whatsapp-line" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectWa() }} styleId={4} enablePadding={false} />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="flowbite:instagram-solid" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectIG() }} styleId={4} enablePadding={false} />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="ant-design:linkedin-outlined" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectLinkedin() }} styleId={4} enablePadding={false} />
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mage:email" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectMail() }} styleId={4} enablePadding={false} />
                                 </div>
                                 <div className="flex flex-wrap xs:justify-center  mt-4">
-                                    <CButton className="rounded-xl h-12 xs:block sm:hidden mt-4" inner="Lihat Project" onClick={() => this.props.introPortfolioTransition()} styleId={4} color="blue" />
+                                    <CButton className="rounded-xl h-12 xs:block sm:hidden mt-4" inner="Lihat Project" onClick={() => this.dispatch(toSectionPortfolio())} styleId={4} color="blue" />
 
                                 </div>
                             </div>

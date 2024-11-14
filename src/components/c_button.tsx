@@ -1,5 +1,6 @@
 import React from "react";
 interface ButtonProps {
+  id?: string;
   inner: any;
   onClick?: () => void;
   styleId: number;
@@ -17,6 +18,7 @@ export default function Button(props: ButtonProps) {
   if (style === 2) {
     return (
       <button
+        id={props.id}
         type="button"
         onClick={props.onClick}
         className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold text-white bg-${props.color}-600 
@@ -30,6 +32,7 @@ export default function Button(props: ButtonProps) {
   } else if (style === 3) {
     return (
       <button
+        id={props.id}
         type="button"
         onClick={props.onClick}
         className={`${props.className}  font-semibold text-white bg-transparent
@@ -43,6 +46,7 @@ export default function Button(props: ButtonProps) {
   } else if (style === 4) {
     return (
       <button
+        id={props.id}
         type="button"
         onClick={props.onClick}
         className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold rounded-md shadow-md 
@@ -61,6 +65,7 @@ export default function Button(props: ButtonProps) {
   } else if (style === 5) {
     return (
       <button
+        id={props.id}
         type="button"
         onClick={props.onClick}
         className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold shadow-none
@@ -73,6 +78,7 @@ export default function Button(props: ButtonProps) {
     return (
       <button
         type="button"
+        id={props.id}
         onClick={props.onClick}
         className={`${props.className} ${enable ? 'px-4 py-2' : ''} font-semibold rounded-md shadow-md 
           ${props.color === "blue"

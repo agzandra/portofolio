@@ -4,10 +4,7 @@ import { Icon } from "@iconify/react";
 import ImageNetwork from "../components/c_image_network";
 import { Fade } from 'react-slideshow-image';
 
-interface WorkProps {
-    workExpAnimation: (reverse?: boolean) => void
-}
-export default class WorkView extends Component<WorkProps> {
+export default class WorkView extends Component {
 
     image = [
         ImageNetwork.work1,
@@ -69,7 +66,7 @@ export default class WorkView extends Component<WorkProps> {
             <div className="absolute overflow-y-scroll h-screen z-20" >
                 <header id="workHeader" className="flex justify-start items-center sm:pl-12 xs:pl-8 xs:pt-5 sm:pt-6 xs:pb-5 sm:pb-0 sm:bg-transparent xs:bg-zinc-900 text-white fixed w-full z-20 translate-y-0">
                     <nav className="flex gap-4">
-                        <CButton className="rounded-xl xs:h-8 sm:h-12 px-2" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.workExpAnimation(true) }} styleId={1} />
+                        <CButton className="rounded-xl xs:h-8 sm:h-12 px-2" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { }} styleId={1} />
                     </nav>
                 </header>
                 <div className=" pt-20 pb-20 ">

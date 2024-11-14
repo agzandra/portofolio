@@ -7,12 +7,8 @@ import ImageNetwork from "../components/c_image_network";
 import { Fade } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 
-interface PortfolioProps {
-    introPortfolioTransition: (reverse?: boolean) => void
-}
-
-class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[] }> {
-    constructor(props: PortfolioProps) {
+class PortfolioView extends Component<{}, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[] }> {
+    constructor(props: {}) {
         super(props);
         this.state = {
             showcaseId: 1,
@@ -21,6 +17,8 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             imageShowcases: []
         }
     }
+
+
 
 
     componentDidMount() {
@@ -66,6 +64,11 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
         </div>)
     }
     selectShowcase(id: number) {
+
+
+        this.setState({
+            showcaseId: id
+        })
 
 
 
@@ -134,7 +137,20 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 ]
             })
         }
+        for (let index = 0; index < 4; index++) {
+            var i = index + 1;
+            if (i != id) {
+                document.getElementById(`btnShowcase${i}`)!.style.transition = 'scale 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                document.getElementById(`btnShowcase${i}`)!.style.scale = '0.7';
+                document.getElementById(`btnShowcase${i}`)!.style.opacity = '70%';
+            } else {
 
+                document.getElementById(`btnShowcase${i}`)!.style.transition = 'scale 0.5s cubic-bezier(0.4, 0, 0.2, 1),0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                document.getElementById(`btnShowcase${i}`)!.style.scale = '1';
+                document.getElementById(`btnShowcase${i}`)!.style.opacity = '100%';
+            }
+
+        }
 
 
         document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
@@ -175,11 +191,11 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
                         <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14">
                             <div className="flex flex-row mt-8">
-                                <CButton className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
-                                <CButton inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
+                                <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 " />} onClick={() => { }} styleId={1} color="blue" enablePadding={false} />
+                                <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className={"w-12 h-12 scale-100"} />} onClick={() => { this.selectShowcase(1) }} styleId={5} color="" enablePadding={false} />
+                                <CButton id="btnShowcase2" className="mr-3" inner={<img src={ImageNetwork.iconESTR} className={"w-12 h-12 scale-100"} />} onClick={() => { this.selectShowcase(2) }} styleId={5} color="" enablePadding={false} />
+                                <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className={"w-12 h-12 scale-100"} />} onClick={() => { this.selectShowcase(3) }} styleId={5} color="" enablePadding={false} />
+                                <CButton id="btnShowcase4" inner={<img src={ImageNetwork.iconObatin} className={"w-12 h-12 scale-100"} />} onClick={() => { this.selectShowcase(4) }} styleId={5} color="" enablePadding={false} />
                             </div>
                             <div id="portfolioDesc" className="flex flex-col mt-8 opacity-100">
                                 <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent text-white">
