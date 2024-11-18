@@ -27,7 +27,7 @@ export default class AboutView extends Component<AboutProps> {
                         <CButton className="rounded-xl xs:h-8 sm:h-12 px-2" enablePadding={false} inner={<div style={{ fontFamily: "Fira Sans", fontWeight: "normal" }}>Kembali</div>} onClick={() => { this.props.aboutAnimation(true) }} styleId={1} />
                     </nav>
                 </header>
-                <div className="flex flex-col items-center justify-center mt-56 mb-20">
+                <div className="flex flex-col items-center justify-center mt-56 mb-40">
                     <div className="bg-white rounded-2xl shadow-md sm:w-2/4 xs:w-5/6  pb-10">
                         <div className="flex flex-col items-center justify-center w-full -mt-36">
                             {/* <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-black mt-5 mb-20" style={{ fontFamily: "Fira Sans" }}>TENTANG SAYA</h2> */}

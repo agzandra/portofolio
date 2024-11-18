@@ -76,7 +76,7 @@ export default class WorkView extends Component<WorkProps> {
 
                     <h2 className="sm:text-3xl xs:text-xl font-bold text-center text-white mt-5 mb-10" style={{ fontFamily: "Fira Sans" }}>PENGALAMAN KERJA</h2>
                     <div className="flex flex-wrap justify-center mb-20">
-                        <div className="slide-container w-96 h-56 top-0 left-0 opacity-100">
+                        <div className="slide-container w-96 h-56 top-0 left-0 opacity-100 xs:px-6 sm:px-1">
                             <Fade key={this.image.join(',')} autoplay={true} arrows={false} duration={1500} infinite={true}>
                                 {this.image.map((url, index) => (
                                     <div key={`work-${index}`}>

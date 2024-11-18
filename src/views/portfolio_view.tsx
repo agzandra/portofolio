@@ -173,7 +173,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 <div id="portfolioContent" className="absolute overflow-y-scroll h-screen z-20" >
                     <div className="flex min-h-screen sm:flex-row xs:flex-col-reverse sm:items-start xs:items-center justify-center py-9">
 
-                        <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14">
+                        <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14 xs:mb-40 sm:mb-10">
                             <div className="flex flex-row mt-8">
                                 <CButton className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
                                 <CButton className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
@@ -195,7 +195,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
                         </div>
                         <div id="portfolioImage" className="sm:w-1/3 xs:w-1/2 sm:translate-y-full xs:-translate-y-full "  >
-                            <div id="portfolioImageOpacity" className="md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0 sm:mt-10 md:mt-16 xl:mt-24  xs:mt-10 xs:mb-20 opacity-0 flex flex-col relative  overflow-clip scale-125"
+                            <div id="portfolioImageOpacity" className="md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0 sm:mt-10 md:mt-16 xl:mt-24  xs:mt-10 xs:mb-10 opacity-0 flex flex-col relative  overflow-clip scale-125"
 
                             >
                                 <img src={ImageNetwork.showcasePlain}

@@ -89,7 +89,7 @@ class IntroView extends Component<IntroProps> {
                                     <CButton className="rounded-xl w-12 h-12" inner={<Icon icon="mage:email" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.redirectMail() }} styleId={4} enablePadding={false} />
                                 </div>
                                 <div className="flex flex-wrap xs:justify-center  mt-4">
-                                    <CButton className="rounded-xl h-12 xs:block sm:hidden mt-4" inner="Lihat Project" onClick={() => this.props.introPortfolioTransition()} styleId={4} color="blue" />
+                                    <CButton className="rounded-xl h-12 xs:block sm:hidden mt-4 mb-40" inner="Lihat Project" onClick={() => this.props.introPortfolioTransition()} styleId={4} color="blue" />
 
                                 </div>
                             </div>
