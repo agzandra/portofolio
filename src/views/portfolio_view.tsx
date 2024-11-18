@@ -11,21 +11,36 @@ interface PortfolioProps {
     introPortfolioTransition: (reverse?: boolean) => void
 }
 
-class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[] }> {
+class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[], lang: string }> {
+
+
     constructor(props: PortfolioProps) {
         super(props);
         this.state = {
             showcaseId: 1,
             title: "",
             desc: "",
-            imageShowcases: []
+            imageShowcases: [],
+            lang: "ID"
         }
     }
 
 
     componentDidMount() {
-        this.selectShowcase(1);
-
+        const language = localStorage.getItem("language");
+        if (language === null) {
+            localStorage.setItem("language", "ID");
+            this.setState({
+                lang: "ID"
+            })
+        } else {
+            this.setState({
+                lang: language
+            })
+        }
+        setTimeout(() => {
+            this.selectShowcase(1);
+        }, 300)
 
     }
 
@@ -75,7 +90,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
         if (id === 1) {
             replaceTitle = "blumb";
-            replaceDesc = "blumb adalah aplikasi sosial yang berfokus kepada pengguna profesional, menyediakan lingkungan terbaik bagi para pengguna yang ingin mencari relasi kerja, organisasi dan komunitas profesional, event profesional dan lain sebagainya.";
+            replaceDesc = this.state.lang == "ID" ? "blumb adalah aplikasi sosial yang berfokus kepada pengguna profesional, menyediakan lingkungan terbaik bagi para pengguna yang ingin mencari relasi kerja, organisasi dan komunitas profesional, event profesional dan lain sebagainya." : "Blumb is a social application centered around professional users, providing an optimal environment for individuals seeking professional connections, organizations, communities, events, and more.";
             replaceTag = (<div>
                 {this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Pre-Release", "Actively Maintained", "Under Development", "Android", "iOS"])}
                 {this.availableStore("https://play.google.com/store/apps/details?id=com.abiseka.blumb", "https://apps.apple.com/id/app/blumb/id6449251568")}
@@ -94,8 +109,9 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             })
         } else if (id === 2) {
             replaceTitle = "KTKI e-STR Mobile"
-            replaceDesc = "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi."
-            replaceTag = this.tagItem(["Konsil Tenaga Kesehatan Indonesia", "Kementerian Kesehatan", "Unreleased", "Under Development", "Android", "iOS"])
+            replaceDesc = this.state.lang == "ID" ? "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi."
+                : "This application, developed in collaboration with the Indonesian Health Professionals Council (formerly the Indonesian Health Council) under the Ministry of Health, is specifically designed for healthcare professionals to submit, amend, and print their registration certificates once they have obtained their competency certificates."
+            replaceTag = this.tagItem([(this.state.lang == "ID" ? "Konsil Tenaga Kesehatan Indonesia" : "Indonesian Health Professionals Council"), (this.state.lang == "ID" ? "Kementerian Kesehatan" : "Ministry of Health"), "Unreleased", "Under Development", "Android", "iOS"])
             this.setState({
                 imageShowcases: [
                     ImageNetwork.showcaseESTR1,
@@ -107,9 +123,10 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
         }
         else if (id === 3) {
             replaceTitle = "Moloco"
-            replaceDesc = "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) fakultas kedokteran."
+            replaceDesc = this.state.lang == "ID" ? "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) fakultas kedokteran."
+                : "Mobile Logbook Co-Ass or Moloco is an application developed to assist students and lecturers in managing logbook submissions, assessments, advisory, and other academic activities at the Faculty of Medicine, Universitas Islam Sultan Agung (UNISSULA)."
             replaceTag = (<div>
-                {this.tagItem(["Fakultas Kedokteran Universitas Islam Sultan Agung", "Released", "Live Production", "Actively Maintained", "Android", "iOS"])}
+                {this.tagItem([(this.state.lang == "ID" ? "Fakultas Kedokteran Universitas Islam Sultan Agung" : "Faculty of Medicine, Universitas Islam Sultan Agung (UNISSULA)"), "Released", "Live Production", "Actively Maintained", "Android", "iOS"])}
                 {this.availableStore("https://play.google.com/store/apps/details?id=com.fkunissula.molocopspdfkunissula", "https://apps.apple.com/id/app/moloco/id1625049471")}
             </div>);
             this.setState({
@@ -123,7 +140,8 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
         }
         else if (id === 4) {
             replaceTitle = "OBAT-in"
-            replaceDesc = "Pengembangan aplikasi bidang kesehatan yang menyediakan layanan dokter dan tenaga medis lainnya berupa layanan telemedis, visit dan reservasi praktik, juga menyediakan penjualan produk kesehatan, layanan pembuatan resep obat apotek dan layanan fasilitas kesehatan. Saat ini pengembangan terhenti dalam jangka waktu yang belum ditentukan."
+            replaceDesc = this.state.lang == "ID" ? "Pengembangan aplikasi bidang kesehatan yang menyediakan layanan dokter dan tenaga medis lainnya berupa layanan telemedis, visit dan reservasi praktik, juga menyediakan penjualan produk kesehatan, layanan pembuatan resep obat apotek dan layanan fasilitas kesehatan. Saat ini pengembangan terhenti dalam jangka waktu yang belum ditentukan."
+                : "The development of a healthcare application providing telemedicine services, doctor and other medical professional visits and appointments, as well as health product sales, pharmacy prescription services, and healthcare facility services has been temporarily halted."
             replaceTag = this.tagItem(["PT. Obatin Sinergi Sehat", "Discontinued", "Abadoned Project", "Android", "iOS"])
             this.setState({
                 imageShowcases: [
@@ -135,7 +153,20 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             })
         }
 
+        for (let index = 0; index < 4; index++) {
+            var i = index + 1;
+            if (i != id) {
+                document.getElementById(`btnShowcase${i}`)!.style.transition = 'scale 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                document.getElementById(`btnShowcase${i}`)!.style.scale = '0.7';
+                document.getElementById(`btnShowcase${i}`)!.style.opacity = '70%';
+            } else {
 
+                document.getElementById(`btnShowcase${i}`)!.style.transition = 'scale 0.5s cubic-bezier(0.4, 0, 0.2, 1),0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                document.getElementById(`btnShowcase${i}`)!.style.scale = '1';
+                document.getElementById(`btnShowcase${i}`)!.style.opacity = '100%';
+            }
+
+        }
 
         document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         document.getElementById("portfolioDesc")!.style.opacity = '0%';
@@ -175,11 +206,11 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
                         <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14 xs:mb-40 sm:mb-10">
                             <div className="flex flex-row mt-8">
-                                <CButton className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
-                                <CButton className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
-                                <CButton inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
+                                <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
+                                <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
+                                <CButton id="btnShowcase2" className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
+                                <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
+                                <CButton id="btnShowcase4" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
                             </div>
                             <div id="portfolioDesc" className="flex flex-col mt-8 opacity-100">
                                 <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent text-white">
