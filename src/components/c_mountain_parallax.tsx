@@ -1,96 +1,136 @@
 
 import React, { Component } from "react";
 import "../css/shooting_star.css";
-class CMountainParallax extends Component {
+import { useAppSelector, useAppDispatch } from '../app/provider_hooks'
+import { useSpring, easings } from "react-spring";
+import { animated } from '@react-spring/web'
+import { LandingSection } from "../app/enum";
+import { fastOutSlowIn } from "../app/easing";
 
 
 
 
-    componentDidMount() {
-        console.log("HELLO DID MOUNT");
-        // Setelah komponen dimount, jalankan animasi
-        this.animate();
-    }
+function CMountainParallax() {
+    const section = useAppSelector((state) => state.landing.section)
+    const showAbout = useAppSelector((state) => state.landing.showAbout)
+    const dispatch = useAppDispatch()
 
-    animate = () => {
-        function transition(id: number) {
-            const element = document.getElementById(`parallax${id}`);
-            setTimeout(() => {
-                element!.style.transition = 'transform  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-                element!.style.transform = 'translateY(20%)';
-            }, 100 * id);
 
-            if (id === 7) {
-                setTimeout(() => {
-                    const star = document.getElementById(`shootingStar`);
-                    const landingLayout = document.getElementById("landingLayout");
-                    star!.style.transition = 'opacity  2.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
-                    star!.style.opacity = '1';
-                    landingLayout!.style.removeProperty('clip-path');
-                }, 3000);
-            }
-        }
-        transition(1);
-        transition(2);
-        transition(3);
-        transition(4);
-        transition(5);
-        transition(6);
-        transition(7);
 
-    };
+    var offsetAnim = useSpring({
+        delay: 100,
+        from: {
+            transform: 'translateY(0%)'
+        },
+        transform: section === LandingSection.Portfolio ? 'translateY(-150%)' : 'translateY(0%)',
+        // from: {
+        // },
+        // to: {
+        //     transform: 'translateY(0%)'
+        // },
+        config: { easing: fastOutSlowIn, duration: section === LandingSection.Portfolio ? 1500 : 1800 },
+    });
+    var starOpacity = useSpring({
+        delay: 600,
+        reverse: section === LandingSection.Portfolio ? true : false,
+        from: {
+            opacity: 0,
+        },
+        to: {
+            opacity: 1,
+        },
+        config: { easing: fastOutSlowIn, duration: 1000 },
+    });
 
-    BgParallax(props: any) {
 
-        return (
-            <div
-                className="min-h-screen"
-                id={`parallax${props.layer}`}
-                style={{
-                    backgroundImage: `url('/portfolio/mountain_parallax_${props.layer}.svg')`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundAttachment: "fixed",
-                    transform: "translate(0%, 100%)",
-                    height: "100%",
-                    width: "100%",
-                    position: "absolute",
-                    scale: "1",
-                    top: "0%",
-                }}
-            >
-            </div>)
+    return (
+        <animated.div id="parallaxParent" style={{ clipPath: 'rectangle(0px 0px 0px 0px)', overflow: "hidden", ...offsetAnim }}>
+            <div className="h-screen" style={{ backgroundColor: "rgba(20, 20, 20, 1)" }}></div>
+            <animated.section id="shootingStar" style={{ ...starOpacity }}>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+                <span className="starfall"></span>
+            </animated.section>
+            <BackgroundMountain layer={7} />
+            <BackgroundMountain layer={6} />
+            <BackgroundMountain layer={5} />
+            <BackgroundMountain layer={4} />
+            <BackgroundMountain layer={3} />
+            <BackgroundMountain layer={2} />
+            <BackgroundMountain layer={1} />
 
-    }
+
+        </animated.div >
+    )
+}
+
+function BgParallax(props: any) {
+    const section = useAppSelector((state) => state.landing.section)
+    const transition = useSpring({
+        delay: 200,
+
+        reverse: false,
+        from: {
+            scale: 1.5,
+            transform: 'translate(0%, 100%)'
+        },
+        // to: {
+        //     scale: section === LandingSection.Intro ? 1.0 : (2.0 - (0.1 * props.layer)),
+        //     transform: section === LandingSection.Intro ? 'translate(0%, 20%)'
+        //         : section === LandingSection.Portfolio ? 'translate(0%, 100%)'
+        //             : section === LandingSection.About ? 'translate(10%,10%)' : 'translate(0%, 100%)'
+        // }
+        scale: section === LandingSection.About ? (2.8 - (0.1 * props.layer)) : (section === LandingSection.Work ? (2.0 - (0.1 * props.layer)) : 1.0),
+        transform: section === LandingSection.Intro ? 'translate(0%, 20%)'
+            : section === LandingSection.Portfolio ? 'translate(0%, 100%)'
+                : section === LandingSection.About ? 'translate(0%,10%)'
+                    : section === LandingSection.Work ? 'translate(-10%,10%)' : 'translate(0%, 100%)',
+        config: { easing: fastOutSlowIn, duration: section === LandingSection.Portfolio ? (800 + (1400 - (200 * props.layer))) : (800 + (200 * props.layer)) },
+    });
+
+    return (
+        // <animated.div style={transition(props.layer)}>
+        <animated.div
+            className="min-h-screen"
+            key={props.layer}
+            id={`parallax${props.layer}`}
+            style={{
+                backgroundImage: `url('/portfolio/mountain_parallax_${props.layer}.svg')`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundAttachment: "fixed",
+                height: "100%",
+                width: "100%",
+                position: "absolute",
+                top: "0%", ...transition
+            }}
+        >
+        </animated.div>
+        // </animated.div>
+    )
+
+}
+
+
+class BackgroundMountain extends React.PureComponent<{ layer: number }> {
     render() {
-        return (
-            <div id="parallaxParent" className="translate-y-0 translate-x-0 scale-100" style={{ clipPath: 'rectangle(0px 0px 0px 0px)' }}>
-                <div className="h-screen" style={{ backgroundColor: "rgba(20, 20, 20, 1)" }}></div>
-                <section id="shootingStar" style={{ opacity: 0 }}>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                    <span className="starfall"></span>
-                </section>
-                <this.BgParallax layer={7} />
-                <this.BgParallax layer={6} />
-                <this.BgParallax layer={5} />
-                <this.BgParallax layer={4} />
-                <this.BgParallax layer={3} />
-                <this.BgParallax layer={2} />
-                <this.BgParallax layer={1} />
-
-
-            </div >
-        )
+        return <BgParallax layer={this.props.layer} />;
     }
 }
 
-export default CMountainParallax
+
+class CMountainParallaxClass extends React.PureComponent {
+    render() {
+        return <CMountainParallax />;
+    }
+}
+
+export default CMountainParallaxClass
