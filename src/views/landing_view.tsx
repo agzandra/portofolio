@@ -59,7 +59,7 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
       const portfolioimg = document.getElementById(`portfolioImage`);
       const portfolioimgopacity = document.getElementById(`portfolioImageOpacity`);
       setTimeout(() => {
-        portfolioimgopacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+        portfolioimgopacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         portfolioimgopacity!.style.opacity = reverse ? '0%' : '100%';
       }, reverse ? 200 : 1100)
       setTimeout(() => {
@@ -275,9 +275,8 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
       var fish = document.getElementById("lottieFish");
       fish!.style.transition = 'opacity  1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
       fish!.style.opacity = reverse ? '0' : '1';
-      setTimeout(() => {
-        this.animatePortfolio(reverse);
-      }, 500)
+      this.animatePortfolio(reverse);
+      this.animateIntro(!reverse);
       setTimeout(() => {
         transition(1);
         transition(2);
@@ -286,8 +285,7 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
         transition(5);
         transition(6);
         transition(7);
-        this.animateIntro(!reverse);
-      }, 1000)
+      }, 700)
 
     } else {
 
