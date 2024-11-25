@@ -66,13 +66,18 @@ class IntroView extends Component<IntroProps, { lang: string }> {
         window.location.href = ("mailto:abidzar.gzandra@gmail.com");
     }
 
-
+    tagAnimation = async () : Promise<void> => {
+        for (let index = 0; index < 13; index++) {
+            
+            
+        }
+    }
 
     tagItem = (text: string[]) => {
-        return (<div className="flex flex-wrap xs:justify-center sm:justify-start content-center gap-1 mt-4 mb-10">
+        return (<div className="flex flex-wrap xs:justify-center sm:justify-start content-center gap-1 mt-4 mb-10 ">
             {
                 text.map((item: string, index: number) => {
-                    return (<div className="bg-white bg-opacity-15 rounded-xl py-1 px-2 text-center">
+                    return (<div id={`tagItem${index}`} className="bg-white bg-opacity-15 rounded-xl py-1 px-2 text-center opacity-0">
                         <p className="text-xs text-white">{item}</p>
                     </div>)
                 })
