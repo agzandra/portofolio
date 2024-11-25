@@ -81,12 +81,7 @@ function BgParallax(props: any) {
             scale: 1.5,
             transform: 'translate(0%, 100%)'
         },
-        // to: {
-        //     scale: section === LandingSection.Intro ? 1.0 : (2.0 - (0.1 * props.layer)),
-        //     transform: section === LandingSection.Intro ? 'translate(0%, 20%)'
-        //         : section === LandingSection.Portfolio ? 'translate(0%, 100%)'
-        //             : section === LandingSection.About ? 'translate(10%,10%)' : 'translate(0%, 100%)'
-        // }
+       
         scale: section === LandingSection.About ? (2.8 - (0.1 * props.layer)) : (section === LandingSection.Work ? (2.0 - (0.1 * props.layer)) : 1.0),
         transform: section === LandingSection.Intro ? 'translate(0%, 20%)'
             : section === LandingSection.Portfolio ? 'translate(0%, 100%)'

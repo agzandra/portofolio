@@ -65,41 +65,47 @@ function IntroView() {
 
 
 
-    function tagsAnim(id: number) {
-        return useSpring({
-            delay: 800 + (100 * (id + 1)),
-            reverse: section !== LandingSection.Intro ? true : false,
-            from: {
-                opacity: 0,
-                scale: 0.7,
-                transform: 'translateX(100%)'
-            },
-            to: {
-                opacity: 1,
-                scale: 1,
-                transform: 'translateX(0%)'
-            },
-            config: { easing: fastOutSlowIn, duration: 1000 },
-        });
-    }
+    const tagsAnim = React.useMemo(
+        () =>
+            (id: number) =>
+                useSpring({
+                    delay: 800 + (100 * (id + 1)),
+                    reverse: section !== LandingSection.Intro ? true : false,
+                    from: {
+                        opacity: 0,
+                        scale: 0.7,
+                        transform: 'translateX(100%)'
+                    },
+                    to: {
+                        opacity: 1,
+                        scale: 1,
+                        transform: 'translateX(0%)'
+                    },
+                    config: { easing: fastOutSlowIn, duration: 1000 },
+                }),
+        [section]
+    );
 
-    function actionAnim(id: number) {
-        return useSpring({
-            delay: 500 + (150 * (id)),
-            reverse: section !== LandingSection.Intro ? true : false,
-            from: {
-                opacity: 0,
-                scale: 0.7,
-                transform: 'translateY(100%)'
-            },
-            to: {
-                opacity: 1,
-                scale: 1,
-                transform: 'translateY(0%)'
-            },
-            config: { easing: fastOutSlowIn, duration: 1000 },
-        });
-    }
+    const actionAnim = React.useMemo(
+        () =>
+            (id: number) =>
+                useSpring({
+                    delay: 500 + (150 * (id)),
+                    reverse: section !== LandingSection.Intro ? true : false,
+                    from: {
+                        opacity: 0,
+                        scale: 0.7,
+                        transform: 'translateY(100%)'
+                    },
+                    to: {
+                        opacity: 1,
+                        scale: 1,
+                        transform: 'translateY(0%)'
+                    },
+                    config: { easing: fastOutSlowIn, duration: 1000 },
+                }),
+        [section]
+    );
 
 
 

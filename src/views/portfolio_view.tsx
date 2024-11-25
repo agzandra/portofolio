@@ -1,4 +1,4 @@
-import React, { Component, useEffect, memo, useRef } from "react";
+import React, { Component, useEffect, useMemo, useRef } from "react";
 import Lottie from "lottie-react";
 import FishSwimming from "../assets/lottie/fish_swimming.json";
 import CButton from "../components/c_button";
@@ -207,10 +207,10 @@ function PortfolioView() {
             }, 100)
         }, 500)
     }
-    function buttonAnim(id: number) {
+    const buttonAnim = useMemo(() => (id: number) => {
         return useSpring({
             delay: 100,
-            reverse: id == showcaseId ? false : true,
+            reverse: id === showcaseId ? false : true,
             from: {
                 opacity: 0.7,
                 scale: 0.7,
@@ -221,7 +221,7 @@ function PortfolioView() {
             },
             config: { easing: fastOutSlowIn, duration: 500 },
         });
-    }
+    }, [showcaseId]);
 
     function back() {
         dispatch(toSectionIntro())
