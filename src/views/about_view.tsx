@@ -34,7 +34,7 @@ export default class AboutView extends Component<AboutProps, { lang: string }> {
             {
                 text.map((item: string, index: number) => {
                     return (<div className="border border-gray rounded-xl p-2 text-center">
-                        <p className="sm:text-sm xs:text-xs text-black">{item}</p>
+                        <p className="sm:text-xs xs:text-xs text-black">{item}</p>
                     </div>)
                 })
             }
@@ -58,10 +58,10 @@ export default class AboutView extends Component<AboutProps, { lang: string }> {
                                 className="w-40 h-52 object-contain rounded-full"
                             />
                             <h2 className="sm:text-3xl xs:text-xl font-bold mt-4 text-black">Abidzar Ghifari Zandra</h2>
-                            <p className="sm:text-xl xs:text-sm mt-2 text-center text-black xl:px-10 md:px-10 sm: px-10" style={{ fontFamily: "Fira Sans" }}>
+                            <p className="sm:text-sm xs:text-sm mt-2 text-center text-black xl:px-10 md:px-10 sm: px-10" style={{ fontFamily: "Fira Sans" }}>
                                 {this.state.lang == "ID" ? "S1 Sistem Informasi • Kota Semarang" : "Bachelor Degree of Information Systems • Semarang City"}
                             </p>
-                            <p className="sm:text-xl xs:text-sm  mt-8 text-center text-black xl:px-10 md:px-10 sm: px-10" style={{ fontFamily: "Fira Sans" }}>
+                            <p className="sm:text-sm xs:text-sm  mt-8 text-center text-black xl:px-10 md:px-10 sm: px-10" style={{ fontFamily: "Fira Sans" }}>
                                 {this.state.lang == "ID" ?
                                     "Saya seorang front-end developer yang fokus kepada aplikasi mobile dengan framework Flutter, selain di bidang tersebut saya juga memiliki pengalaman dalam pengembangan aplikasi web app, memiliki pengalaman sebagai back-end developer yang menyediakan layanan API dan database, serta saya memiliki pengetahuan dalam desain visual dan motion graphics."
                                     : "I am a front-end developer who focuses on mobile applications with the Flutter framework, besides in that field I also have experience in developing web apps, have experience as a back-end developer who provides API and database services, and I have knowledge in visual design and motion graphics."}
@@ -71,7 +71,7 @@ export default class AboutView extends Component<AboutProps, { lang: string }> {
                                 {this.state.lang == "ID" ? "Saya terbiasa dengan pekerjaan kolaborasi dengan tim maupun independen dalam berbagai proyek dan dapat dengan mudah beradaptasi dengan perubahan kebutuhan proyek." : "I am accustomed to working collaboratively in teams as well as independently on various projects and can easily adapt to changing project requirements."}
                                 <br />
                                 <br />
-                                <h1 className="text-center sm:text-xl xs:text-sm text-xl" style={{ fontFamily: "Poppins", fontWeight: "bold" }}>Knowledge Tags</h1>
+                                <h1 className="text-center sm:text-sm xs:text-sm text-xl" style={{ fontFamily: "Poppins", fontWeight: "bold" }}>Knowledge Tags</h1>
                             </p>
                             <div className="xl:px-10 md:px-10 sm: px-10">
                                 {this.tagItem(["Flutter Dart", "Golang", "ReactJS", "Vue.js", "Typescript", "PosgreSQL", "Figma", "Motion Graphic Lottie", "After Effect", "CorelDraw", "Illustrator", "GitLab", "GitHub"])}

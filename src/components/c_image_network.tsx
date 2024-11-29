@@ -12,6 +12,12 @@ import showcaseESTR1 from "../assets/imgs/estr1.png";
 import showcaseESTR2 from "../assets/imgs/estr2.png";
 import showcaseESTR3 from "../assets/imgs/estr3.png";
 import showcaseESTR4 from "../assets/imgs/estr4.png";
+import showcaseESTRWeb1 from "../assets/imgs/estr_web1.png";
+import showcaseESTRWeb2 from "../assets/imgs/estr_web2.png";
+import showcaseESTRWeb3 from "../assets/imgs/estr_web3.png";
+import showcaseESTRWeb4 from "../assets/imgs/estr_web4.png";
+import showcaseESTRWeb5 from "../assets/imgs/estr_web5.png";
+import showcaseESTRWeb6 from "../assets/imgs/estr_web6.png";
 import showcaseObatin1 from "../assets/imgs/obatin1.png";
 import showcaseObatin2 from "../assets/imgs/obatin2.png";
 import showcaseObatin3 from "../assets/imgs/obatin3.png";
@@ -20,10 +26,16 @@ import showcaseMoloco1 from "../assets/imgs/moloco1.png";
 import showcaseMoloco2 from "../assets/imgs/moloco2.png";
 import showcaseMoloco3 from "../assets/imgs/moloco3.png";
 import showcaseMoloco4 from "../assets/imgs/moloco4.png";
+import showcaseBelief1 from "../assets/imgs/belief1.png";
+import showcaseBelief2 from "../assets/imgs/belief2.png";
+import showcaseBelief3 from "../assets/imgs/belief3.png";
+import showcaseBelief4 from "../assets/imgs/belief4.png";
 import iconBlumb from "../assets/imgs/icon_blumb.png";
 import iconObatin from "../assets/imgs/icon_obatin.png";
 import iconMoloco from "../assets/imgs/icon_moloco.png";
 import iconESTR from "../assets/imgs/icon_estr.png";
+import iconESTRWeb from "../assets/imgs/icon_estr_web.png";
+import iconBelief from "../assets/imgs/icon_belief.png";
 import logoAbiseka from "../assets/imgs/logo_abiseka.jpg";
 import logoObatin from "../assets/imgs/logo_obatin.png";
 import logoFkUnissula from "../assets/imgs/logo_fk_unissula.png";
@@ -81,6 +93,12 @@ const ImageAsset = {
     showcaseESTR2,
     showcaseESTR3,
     showcaseESTR4,
+    showcaseESTRWeb1,
+    showcaseESTRWeb2,
+    showcaseESTRWeb3,
+    showcaseESTRWeb4,
+    showcaseESTRWeb5,
+    showcaseESTRWeb6,
     showcaseObatin: (index: number) => {
         switch (index) {
             case 1:
@@ -113,10 +131,28 @@ const ImageAsset = {
     showcaseMoloco2,
     showcaseMoloco3,
     showcaseMoloco4,
+    showcaseBelief: (index: number) => {
+        switch (index) {
+            case 1:
+                return showcaseBelief1;
+            case 2:
+                return showcaseBelief2;
+            case 3:
+                return showcaseBelief3;
+            default:
+                return showcaseBelief4;
+        }
+    },
+    showcaseBelief1,
+    showcaseBelief2,
+    showcaseBelief3,
+    showcaseBelief4,
     iconBlumb,
     iconObatin,
     iconMoloco,
     iconESTR,
+    iconESTRWeb,
+    iconBelief,
     logoAbiseka,
     logoObatin,
     logoFkUnissula,

@@ -23,7 +23,17 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
 
   componentDidMount(): void {
   }
-
+  tagAnimation = (reverse: boolean = false): void => {
+    setTimeout(() => {
+      for (let index = 0; index < 13; index++) {
+        setTimeout(() => {
+          const tagOpacity = document.getElementById(`tagItem${index}`);
+          tagOpacity!.style.transition = reverse ? 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'opacity 2.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+          tagOpacity!.style.opacity = reverse ? '0%' : '100%';
+        }, 120 * (index + 1))
+      }
+    }, 1500);
+  }
   animateIntro = (reverse: boolean = false) => {
     const introtext = document.getElementById(`introduceText`);
     const introimg = document.getElementById(`introduceImage`);
@@ -41,6 +51,8 @@ class LandingView extends Component<LandingProps, { showAbout: boolean, showWork
       introheader!.style.transition = 'transform 1.0s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
       introheader!.style.transform = reverse ? 'translateY(-100%)' : 'translateY(0%)';
     }, reverse ? 100 : 1200);
+    this.tagAnimation(reverse);
+
     if (!reverse) {
       setTimeout(() => {
         this.setState({

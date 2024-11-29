@@ -11,7 +11,7 @@ interface PortfolioProps {
     introPortfolioTransition: (reverse?: boolean) => void
 }
 
-class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, imageShowcases: string[], lang: string }> {
+class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, specs?: React.JSX.Element, imageShowcases: string[], lang: string }> {
 
 
     constructor(props: PortfolioProps) {
@@ -87,14 +87,16 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
         var replaceTitle = "";
         var replaceDesc = "";
         var replaceTag = this.tagItem([""]);
+        var replaceSpecs = this.tagItem([""]);
 
         if (id === 1) {
             replaceTitle = "blumb";
             replaceDesc = this.state.lang == "ID" ? "blumb adalah aplikasi sosial yang berfokus kepada pengguna profesional, menyediakan lingkungan terbaik bagi para pengguna yang ingin mencari relasi kerja, organisasi dan komunitas profesional, event profesional dan lain sebagainya." : "Blumb is a social application centered around professional users, providing an optimal environment for individuals seeking professional connections, organizations, communities, events, and more.";
             replaceTag = (<div>
-                {this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Pre-Release", "Actively Maintained", "Under Development", "Android", "iOS"])}
+                {this.tagItem(["PT. Andalan Basis Teknologi Informatika", "Pre-Release", "Actively Maintained", "Under Development", "Flutter", "Android", "iOS", "Push Notification", "Real Time Chat", "Live Streaming", "Video Conference", "Video Call", "Voice Call", "Google Sign In", "Apple Sign In", "QR Scanner", "Deeplink"])}
                 {this.availableStore("https://play.google.com/store/apps/details?id=com.abiseka.blumb", "https://apps.apple.com/id/app/blumb/id6449251568")}
             </div>);
+
             this.setState({
                 imageShowcases: [
                     ImageNetwork.showcaseBlumb1,
@@ -108,10 +110,10 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 ]
             })
         } else if (id === 2) {
-            replaceTitle = "KTKI e-STR Mobile"
+            replaceTitle = "e-STR Mobile"
             replaceDesc = this.state.lang == "ID" ? "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi."
                 : "This application, developed in collaboration with the Indonesian Health Professionals Council (formerly the Indonesian Health Council) under the Ministry of Health, is specifically designed for healthcare professionals to submit, amend, and print their registration certificates once they have obtained their competency certificates."
-            replaceTag = this.tagItem([(this.state.lang == "ID" ? "Konsil Tenaga Kesehatan Indonesia" : "Indonesian Health Professionals Council"), (this.state.lang == "ID" ? "Kementerian Kesehatan" : "Ministry of Health"), "Unreleased", "Under Development", "Android", "iOS"])
+            replaceTag = this.tagItem([(this.state.lang == "ID" ? "Konsil Tenaga Kesehatan Indonesia" : "Indonesian Health Professionals Council"), (this.state.lang == "ID" ? "Kementerian Kesehatan" : "Ministry of Health"), "Unreleased", "Under Development", "Flutter", "Android", "iOS"])
             this.setState({
                 imageShowcases: [
                     ImageNetwork.showcaseESTR1,
@@ -120,13 +122,28 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                     ImageNetwork.showcaseESTR4
                 ]
             })
+        } else if (id === 3) {
+            replaceTitle = "e-STR Webapp"
+            replaceDesc = this.state.lang == "ID" ? "Aplikasi atas kerja sama dengan Konsil Tenaga Kesehatan Indonesia (sekarang Konsil Kesehatan Indonesia) dibawah naungan Kementerian Kesehatan yang dibuat khusus untuk tenaga kesehatan untuk melakukan pengajuan, perbaikan dan cetak surat tanda registrasi yang telah memiliki sertifikat kompetensi sekaligus halaman admin untuk validasi pengajuan registrasi baru, registrasi ulang, cetak ulang, tanda tangan elektronik, manajemen akun pemohon, RBAC, dan lainnya"
+                : "This application, developed in collaboration with the Indonesian Health Professionals Council (formerly the Indonesian Health Council) under the Ministry of Health, is specifically designed for healthcare professionals to submit, amend, and print their registration certificates once they have obtained their competency certificates, as well as an admin page for validating new registration applications, re-registrations, reprints, electronic signatures, applicant account management, RBAC, and more."
+            replaceTag = this.tagItem([(this.state.lang == "ID" ? "Konsil Tenaga Kesehatan Indonesia" : "Indonesian Health Professionals Council"), (this.state.lang == "ID" ? "Kementerian Kesehatan" : "Ministry of Health"), "Unreleased", "Under Development", "Vue.js", "Golang", "HTML"])
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseESTRWeb1,
+                    ImageNetwork.showcaseESTRWeb2,
+                    ImageNetwork.showcaseESTRWeb3,
+                    ImageNetwork.showcaseESTRWeb4,
+                    ImageNetwork.showcaseESTRWeb5,
+                    ImageNetwork.showcaseESTRWeb6,
+                ]
+            })
         }
-        else if (id === 3) {
+        else if (id === 4) {
             replaceTitle = "Moloco"
             replaceDesc = this.state.lang == "ID" ? "Mobile Logbook Co-Ass atau Moloco adalah aplikasi yang dikembangkan untuk membantu mahasiswa dan dosen dalam mengatur pengajuan logbook, penilaian, perwalian dan aktivitas perkuliahan di Universitas Islam Sultan Agung (UNISSULA) fakultas kedokteran."
                 : "Mobile Logbook Co-Ass or Moloco is an application developed to assist students and lecturers in managing logbook submissions, assessments, advisory, and other academic activities at the Faculty of Medicine, Universitas Islam Sultan Agung (UNISSULA)."
             replaceTag = (<div>
-                {this.tagItem([(this.state.lang == "ID" ? "Fakultas Kedokteran Universitas Islam Sultan Agung" : "Faculty of Medicine, Universitas Islam Sultan Agung (UNISSULA)"), "Released", "Live Production", "Actively Maintained", "Android", "iOS"])}
+                {this.tagItem([(this.state.lang == "ID" ? "Fakultas Kedokteran Universitas Islam Sultan Agung" : "Faculty of Medicine, Universitas Islam Sultan Agung (UNISSULA)"), "Released", "Flutter", "Live Production", "Actively Maintained", "Android", "iOS", "Push Notification"])}
                 {this.availableStore("https://play.google.com/store/apps/details?id=com.fkunissula.molocopspdfkunissula", "https://apps.apple.com/id/app/moloco/id1625049471")}
             </div>);
             this.setState({
@@ -138,11 +155,11 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 ]
             })
         }
-        else if (id === 4) {
+        else if (id === 5) {
             replaceTitle = "OBAT-in"
             replaceDesc = this.state.lang == "ID" ? "Pengembangan aplikasi bidang kesehatan yang menyediakan layanan dokter dan tenaga medis lainnya berupa layanan telemedis, visit dan reservasi praktik, juga menyediakan penjualan produk kesehatan, layanan pembuatan resep obat apotek dan layanan fasilitas kesehatan. Saat ini pengembangan terhenti dalam jangka waktu yang belum ditentukan."
                 : "The development of a healthcare application providing telemedicine services, doctor and other medical professional visits and appointments, as well as health product sales, pharmacy prescription services, and healthcare facility services has been temporarily halted."
-            replaceTag = this.tagItem(["PT. Obatin Sinergi Sehat", "Discontinued", "Abadoned Project", "Android", "iOS"])
+            replaceTag = this.tagItem(["PT. Obatin Sinergi Sehat", "Discontinued", "Abadoned Project", "Flutter", "Android", "iOS", "Push Notification", "Voice Call", "Video Call", "Real Time Chat", "MapBox"])
             this.setState({
                 imageShowcases: [
                     ImageNetwork.showcaseObatin1,
@@ -152,8 +169,22 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 ]
             })
         }
+        else if (id === 6) {
+            replaceTitle = "Belief"
+            replaceDesc = this.state.lang == "ID" ? "Pengembangan aplikasi sosial media khusus untuk konten keagamaan, bertujuan mencegah adanya intervensi oknum sehingga membuat lingkungan sosial yang lebih sehat, aman dan damai dengan memisahkan konten dan aktivitas sosial relevan sesuai kepercayaan setiap pengguna dan aplikasi ini menindak tegas segala pelanggaran komunitas seperti penghinaan, provokasi dan informasi palsu."
+                : "Developing a specialized social media app for religious content, aiming to prevent interference from certain parties and create a healthier, safer, and more peaceful social environment. This app will separate relevant social content and activities according to each user's beliefs and will strictly enforce community guidelines against offenses such as insults, provocations, and the spread of false information."
+            replaceTag = this.tagItem(["Own Project", "Early Development", "Social Media", "Figma", "Flutter", "Android", "iOS"])
+            this.setState({
+                imageShowcases: [
+                    ImageNetwork.showcaseBelief1,
+                    ImageNetwork.showcaseBelief2,
+                    ImageNetwork.showcaseBelief3,
+                    ImageNetwork.showcaseBelief4
+                ]
+            })
+        }
 
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 6; index++) {
             var i = index + 1;
             if (i != id) {
                 document.getElementById(`btnShowcase${i}`)!.style.transition = 'scale 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
@@ -175,6 +206,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 title: replaceTitle,
                 desc: replaceDesc,
                 tag: replaceTag,
+                specs: replaceSpecs
             })
             setTimeout(() => {
                 document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
@@ -209,8 +241,10 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                                 <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
                                 <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
                                 <CButton id="btnShowcase2" className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
-                                <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
-                                <CButton id="btnShowcase4" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
+                                <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconESTRWeb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
+                                <CButton id="btnShowcase4" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
+                                <CButton id="btnShowcase5" className="mr-3" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(5) }} styleId={3} color="" />
+                                <CButton id="btnShowcase6" inner={<img src={ImageNetwork.iconBelief} className="w-12 h-12" />} onClick={() => { this.selectShowcase(6) }} styleId={3} color="" />
                             </div>
                             <div id="portfolioDesc" className="flex flex-col mt-8 opacity-100">
                                 <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent text-white">
@@ -220,6 +254,8 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                                     {this.state.desc}
                                 </h4>
                                 {this.state.tag}
+
+                                {this.state.specs}
                             </div>
 
 

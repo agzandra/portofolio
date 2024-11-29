@@ -57,21 +57,21 @@ export default class WorkView extends Component<WorkProps, { lang: string }> {
                     className="w-36 h-12 object-scale-down"
                 />
 
-                <h2 className="md:text-2xl xs:text-lg font-bold  md:w-2/4 xs: w-3/4 text-center text-white mt-5 mb-0">{title}</h2>
+                <h2 className="md:text-xl xs:text-sm font-bold  md:w-2/4 xs: w-3/4 text-center text-white mt-5 mb-0">{title}</h2>
 
 
 
                 <div className="flex flex-row items-center md:w-2/4 xs: w-3/4 justify-start ">
 
                     <div className="flex flex-col">
-                        <p className="md:text-xl xs:text-sm text-white text-center">
+                        <p className="md:text-xl xs:text-xs text-white text-center">
                             {statuskerja}
                         </p>
-                        <p className="md:text-xl xs:text-sm text-blue-100 text-center">
+                        <p className="md:text-xl xs:text-xs text-blue-100 text-center">
                             {masakerja}
                         </p>
 
-                        <p className="md:text-xl xs:text-sm mt-3 text-left text-white " style={{ fontFamily: "Fira Sans" }}>
+                        <p className="md:text-xl xs:text-xs mt-3 text-left text-white " style={{ fontFamily: "Fira Sans" }}>
                             {paragraf1}
                             <br />
                             <br />

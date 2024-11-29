@@ -32,7 +32,6 @@ class IntroView extends Component<IntroProps, { lang: string }> {
                 lang: language
             })
         }
-        this.tagAnimation();
         this.props.introAnimation();
     }
 
@@ -66,14 +65,7 @@ class IntroView extends Component<IntroProps, { lang: string }> {
         window.location.href = ("mailto:abidzar.gzandra@gmail.com");
     }
 
-    tagAnimation =  () : void => {
-        for (let index = 0; index < 13; index++) {
-            setTimeout(() => {
-                
-            })
-            
-        }
-    }
+  
 
     tagItem = (text: string[]) => {
         return (<div className="flex flex-wrap xs:justify-center sm:justify-start content-center gap-1 mt-4 mb-10 ">
