@@ -1,5 +1,6 @@
 import meAbidzar from "../assets/imgs/me_abidzar.png";
 import showcasePlain from "../assets/imgs/showcase_plain.png";
+import showcasePlainWeb from "../assets/imgs/showcase_plain_web.png";
 import showcaseBlumb1 from "../assets/imgs/blumb1.png";
 import showcaseBlumb2 from "../assets/imgs/blumb2.png";
 import showcaseBlumb3 from "../assets/imgs/blumb3.png";
@@ -49,6 +50,7 @@ import work4 from "../assets/imgs/work-4.png";
 const ImageAsset = {
     meAbidzar,
     showcasePlain,
+    showcasePlainWeb,
     showcaseBlumb: (index: number) => {
         switch (index) {
             case 1:

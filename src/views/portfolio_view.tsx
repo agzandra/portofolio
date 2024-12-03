@@ -11,7 +11,7 @@ interface PortfolioProps {
     introPortfolioTransition: (reverse?: boolean) => void
 }
 
-class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, specs?: React.JSX.Element, imageShowcases: string[], lang: string }> {
+class PortfolioView extends Component<PortfolioProps, { showcaseId: number, title: string, desc: string, tag?: React.JSX.Element, specs?: React.JSX.Element, imageShowcaseRows?: React.JSX.Element, imageShowcaseColumns?: React.JSX.Element, imageShowcases: string[], lang: string }> {
 
 
     constructor(props: PortfolioProps) {
@@ -21,8 +21,38 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             title: "",
             desc: "",
             imageShowcases: [],
-            lang: "ID"
+            lang: "ID",
         }
+    }
+
+    imageShowcase(vertical: boolean = false) {
+        return (<div id="portfolioImage" className={(vertical ? "sm:w-full md:mb-20 sm:mb-12 xs:mb-2 lg:px-64 sm:px-40 xs:px-12" : "sm:w-1/3 xs:w-1/2") + " sm:translate-y-full xs:-translate-y-full"}>
+            <div id="portfolioImageOpacity" className={(vertical ? "" : "md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0") + " sm:mt-10 md:mt-16 xl:mt-24  xs:mt-10 xs:mb-10 opacity-0 flex flex-col relative  overflow-clip scale-125"}
+            >
+                {vertical ? (<img src={ImageNetwork.showcasePlainWeb}
+                    className="w-full opacity-100"
+                />) : (
+                    <img src={ImageNetwork.showcasePlain}
+                        className="w-full opacity-100"
+                    />
+                )}
+                <div className="slide-container w-full h-1/2 absolute top-0 left-0 opacity-100">
+                    <Fade key={this.state.imageShowcases.join(',')} autoplay={true} arrows={false} duration={1500} infinite={true}>
+                        {this.state.imageShowcases.map((url, index) => (
+                            <div key={index}>
+                                <img style={{ width: '100%' }} src={url} />
+                            </div>
+                        ))}
+                    </Fade>
+                </div>
+                {vertical ? (<div></div>) : (
+                    <img src="/portfolio/iphone_frame.svg"
+                        className="w-full absolute top-0 z-20 left-0"
+                    />
+                )}
+
+            </div>
+        </div>)
     }
 
 
@@ -38,8 +68,12 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 lang: language
             })
         }
+        this.setState({
+            imageShowcaseRows: this.imageShowcase(),
+        })
         setTimeout(() => {
-            this.selectShowcase(1);
+            this.selectShowcase(1, true);
+
         }, 300)
 
     }
@@ -80,8 +114,8 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             }
         </div>)
     }
-    selectShowcase(id: number) {
-
+    selectShowcase(id: number, initial: boolean = false) {
+        var setToVertical = id === 3 ? true : false
 
 
         var replaceTitle = "";
@@ -198,19 +232,41 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
             }
 
         }
-
         document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
         document.getElementById("portfolioDesc")!.style.opacity = '0%';
+        if (!initial) {
+            document.getElementById("portfolioImageOpacity")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+            document.getElementById("portfolioImageOpacity")!.style.opacity = '0%';
+            document.getElementById("portfolioImage")!.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+            document.getElementById("portfolioImage")!.style.transform = 'translateY(100%)';
+        }
+
         setTimeout(() => {
             this.setState({
                 title: replaceTitle,
                 desc: replaceDesc,
                 tag: replaceTag,
-                specs: replaceSpecs
+                showcaseId: id,
+                specs: replaceSpecs,
+                imageShowcaseColumns: setToVertical === true ? this.imageShowcase(true) : <div></div>,
+                imageShowcaseRows: setToVertical === false ? this.imageShowcase() : <div></div>
+
             })
             setTimeout(() => {
+                if (!initial) {
+                    document.getElementById("portfolioImageOpacity")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                    document.getElementById("portfolioImageOpacity")!.style.opacity = '100%';
+                    document.getElementById("portfolioImage")!.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
+                    document.getElementById("portfolioImage")!.style.transform = 'translateY(0%)';
+                }
                 document.getElementById("portfolioDesc")!.style.transition = 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)'; // Durasi dan easing animasi
                 document.getElementById("portfolioDesc")!.style.opacity = '100%';
+
+                // setTimeout(() => {
+                //     this.setState({
+                //         showcaseId: id
+                //     })
+                // }, 500)
             }, 100)
         }, 500)
     }
@@ -236,7 +292,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                 <div id="portfolioContent" className="absolute overflow-y-scroll h-screen z-20" >
                     <div className="flex min-h-screen sm:flex-row xs:flex-col-reverse sm:items-start xs:items-center justify-center py-9">
 
-                        <div id="portfolioText" className="flex-col sm:w-2/3 xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14 xs:mb-40 sm:mb-10">
+                        <div id="portfolioText" className={(this.state.showcaseId === 3 ? "sm:w-full" : "sm:w-2/3") + " flex-col items- xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14 xs:mb-40 sm:mb-10"}>
                             <div className="flex flex-row mt-8">
                                 <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
                                 <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
@@ -246,6 +302,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                                 <CButton id="btnShowcase5" className="mr-3" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(5) }} styleId={3} color="" />
                                 <CButton id="btnShowcase6" inner={<img src={ImageNetwork.iconBelief} className="w-12 h-12" />} onClick={() => { this.selectShowcase(6) }} styleId={3} color="" />
                             </div>
+                            {this.state.imageShowcaseColumns}
                             <div id="portfolioDesc" className="flex flex-col mt-8 opacity-100">
                                 <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent text-white">
                                     {this.state.title}
@@ -255,33 +312,9 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                                 </h4>
                                 {this.state.tag}
 
-                                {this.state.specs}
-                            </div>
-
-
-
-                        </div>
-                        <div id="portfolioImage" className="sm:w-1/3 xs:w-1/2 sm:translate-y-full xs:-translate-y-full "  >
-                            <div id="portfolioImageOpacity" className="md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0 sm:mt-10 md:mt-16 xl:mt-24  xs:mt-10 xs:mb-10 opacity-0 flex flex-col relative  overflow-clip scale-125"
-
-                            >
-                                <img src={ImageNetwork.showcasePlain}
-                                    className="w-full opacity-100"
-                                />
-                                <div className="slide-container w-full absolute top-0 left-0 opacity-100">
-                                    <Fade key={this.state.imageShowcases.join(',')} autoplay={true} arrows={false} duration={1500} infinite={true}>
-                                        {this.state.imageShowcases.map((url, index) => (
-                                            <div key={index}>
-                                                <img style={{ width: '100%' }} src={url} />
-                                            </div>
-                                        ))}
-                                    </Fade>
-                                </div>
-                                <img src="/portfolio/iphone_frame.svg"
-                                    className="w-full absolute top-0 z-20 left-0"
-                                />
                             </div>
                         </div>
+                        {this.state.imageShowcaseRows}
                     </div>
                 </div>
             </div>
