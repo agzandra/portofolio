@@ -27,7 +27,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
     imageShowcase(vertical: boolean = false) {
         return (<div id="portfolioImage" className={(vertical ? "sm:w-full md:mb-20 sm:mb-12 xs:mb-2 lg:px-64 sm:px-40 xs:px-12" : "sm:w-1/3 xs:w-1/2") + " sm:translate-y-full xs:-translate-y-full"}>
-            <div id="portfolioImageOpacity" className={(vertical ? "" : "md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0") + " sm:mt-10 md:mt-16 xl:mt-24  xs:mt-10 xs:mb-10 opacity-0 flex flex-col relative  overflow-clip scale-125"}
+            <div id="portfolioImageOpacity" className={(vertical ? "sm:mt-5 xs:mt-3" : "md:w-3/5 xs:w-3/4 h-1/2 md:mr-16 sm: mr-8 xs:mr-0 xs:ml-8 sm:ml-0 sm:mt-10 md:mt-16 xl:mt-24 xs:mt-10") + " xs:mb-10 opacity-0 flex flex-col relative  overflow-clip scale-125"}
             >
                 {vertical ? (<img src={ImageNetwork.showcasePlainWeb}
                     className="w-full opacity-100"
@@ -290,20 +290,19 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
                     <div id="fishBackground" className="overflow-clip"><this.Fish /></div>
                 </div>
                 <div id="portfolioContent" className="absolute overflow-y-scroll h-screen z-20" >
+                    <div className="flex flex-row mt-8 px-9">
+                        <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
+                        <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12 object-contain" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
+                        <CButton id="btnShowcase2" className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12 object-contain" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
+                        <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconESTRWeb} className="w-12 h-12 object-contain" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
+                        <CButton id="btnShowcase4" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12 object-contain" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
+                        <CButton id="btnShowcase5" className="mr-3" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12 object-contain" />} onClick={() => { this.selectShowcase(5) }} styleId={3} color="" />
+                        <CButton id="btnShowcase6" inner={<img src={ImageNetwork.iconBelief} className="w-12 h-12" />} onClick={() => { this.selectShowcase(6) }} styleId={3} color="" />
+                    </div>
                     <div className="flex min-h-screen sm:flex-row xs:flex-col-reverse sm:items-start xs:items-center justify-center py-9">
-
                         <div id="portfolioText" className={(this.state.showcaseId === 3 ? "sm:w-full" : "sm:w-2/3") + " flex-col items- xs:w-full md:pl-16 xs:px-9 sm:pl-8 -translate-x-full sm:mt-10 xs: mt-14 xs:mb-40 sm:mb-10"}>
-                            <div className="flex flex-row mt-8">
-                                <CButton id="btnBack" className="mr-3 rounded-xl w-12 h-12" inner={<Icon icon="mdi-light:arrow-left" fontSize={12} className="w-12 h-12 p-3" />} onClick={() => { this.props.introPortfolioTransition(true) }} styleId={1} color="blue" enablePadding={false} />
-                                <CButton id="btnShowcase1" className="mr-3" inner={<img src={ImageNetwork.iconBlumb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(1) }} styleId={3} color="" />
-                                <CButton id="btnShowcase2" className="mr-3" inner={<img src={ImageNetwork.iconESTR} className="w-12 h-12" />} onClick={() => { this.selectShowcase(2) }} styleId={3} color="" />
-                                <CButton id="btnShowcase3" className="mr-3" inner={<img src={ImageNetwork.iconESTRWeb} className="w-12 h-12" />} onClick={() => { this.selectShowcase(3) }} styleId={3} color="" />
-                                <CButton id="btnShowcase4" className="mr-3" inner={<img src={ImageNetwork.iconMoloco} className="w-12 h-12" />} onClick={() => { this.selectShowcase(4) }} styleId={3} color="" />
-                                <CButton id="btnShowcase5" className="mr-3" inner={<img src={ImageNetwork.iconObatin} className="w-12 h-12" />} onClick={() => { this.selectShowcase(5) }} styleId={3} color="" />
-                                <CButton id="btnShowcase6" inner={<img src={ImageNetwork.iconBelief} className="w-12 h-12" />} onClick={() => { this.selectShowcase(6) }} styleId={3} color="" />
-                            </div>
                             {this.state.imageShowcaseColumns}
-                            <div id="portfolioDesc" className="flex flex-col mt-8 opacity-100">
+                            <div id="portfolioDesc" className="flex flex-col opacity-100">
                                 <h1 className="xs:text-3xl md:text-3xl xl:text-5xl w-full font-bold text-transparent text-white">
                                     {this.state.title}
                                 </h1>
@@ -314,6 +313,7 @@ class PortfolioView extends Component<PortfolioProps, { showcaseId: number, titl
 
                             </div>
                         </div>
+
                         {this.state.imageShowcaseRows}
                     </div>
                 </div>
